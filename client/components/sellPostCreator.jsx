@@ -14,6 +14,7 @@ const SellItem = () => {
       <br />
     </>
   );
+
 };
 
 export default SellItem;

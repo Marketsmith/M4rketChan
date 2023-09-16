@@ -11,9 +11,12 @@ const Search = () => {
     return (
         <>
         <Navigation/>
-         <Link to='/details' >
-                <button type='button'> Details </button>
-        </Link><br/>
+
+         <Link to='/results' >
+                <button type='button'> Search </button>
+        </Link>
+        <br/>
+
         </>
     );
 };
