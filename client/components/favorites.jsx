@@ -1,21 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Search = () => {
-
-    
+const Favorites = () => {
 
     return (
         <>
         <Navigation/>
+        <div>HELLO THIS IS FAVORITES</div>
 
-         <Link to='/results' >
-                <button type='button'> Search </button>
-        </Link>
+        <button type='button'> FAVORITE </button>
+
         <br/>
 
         </>
     );
 };
 
-export default Search;
+export default Favorites;
