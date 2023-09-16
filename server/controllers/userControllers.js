@@ -13,12 +13,15 @@ userController.login = (req, res, next) => {
     });
   }
 
-  User.find({ username, password })
+  User.findOne({ username })
     .then(data => {
       if (data.length) {
-        res.locals.success = true;
         res.locals.user = data[0];
-        res.locals.userID = data[0]._id; 
+        bcrypt
+          .compare(password, res.locals.user.password)
+          .then(result => {
+            if (result) res.locals.success = true;
+          });
       }
       return next();
     })
