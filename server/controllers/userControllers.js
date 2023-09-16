@@ -21,6 +21,7 @@ userController.login = (req, res, next) => {
           .compare(password, res.locals.user.password)
           .then(result => {
             if (result) res.locals.success = true;
+            return next();
           })
           .catch(err => {
             return next({
@@ -58,6 +59,7 @@ userController.signUp = (req, res, next) => {
     .then(data => {
       if (data.length) { 
         res.locals.success = false;
+        res.locals.exists = true;
         return next({
           log: 'username already exists, userController.signUp failed',
           message: 'username already exists, userController.signUp failed'

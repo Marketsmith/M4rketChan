@@ -5,12 +5,8 @@ const Login = () => {
   <>
     <h3 className='loginHeader'>Log In</h3>
     <form method="POST" action='/login'>
-      <div>
-        <input name="username" type="text" placeholder="username"></input>
-      </div>
-      <div>
-        <input name="password" type="password" placeholder="password"></input>
-      </div>
+        <input name="username" type="text" placeholder="username"></input> <br/>
+        <input name="password" type="password" placeholder="password"></input> <br/>
       <div>
         <input className='loginButton' type='submit' value="log in"></input>
       </div>
