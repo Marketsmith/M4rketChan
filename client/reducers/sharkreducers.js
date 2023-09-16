@@ -1,28 +1,31 @@
-import * as actions from '../actions/actions.js';
+// import * as actions from '../actions/actions.js';
+
 
 
 const initialState = {
-    initialstate: 0
+    initialstate: 0,
+    username: ''
 }
 
 
-const sharkreducers = (state = initialState, action) => {
 
-  switch (action.type) {
+// const sharkreducers = (state = initialState, action) => {
 
-      case [PLACEHOLDER]:{
+//   switch (action.type) {
+
+//       case [PLACEHOLDER]:{
 
 
-      return {
-        ...state,
-        initialstate: state.initialstate+1
+//       return {
+//         ...state,
+//         initialstate: state.initialstate+1
 
-      }
-    }
+//       }
+//     }
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
-export default sharkreducers;
+// export default sharkreducers;

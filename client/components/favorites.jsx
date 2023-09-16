@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Results = () => {
-
-
+const Favorites = () => {
 
     return (
         <>
         <Navigation/>
-        <div>HELLO THIS IS RESULTS</div>
+        <div>HELLO THIS IS FAVORITES</div>
 
-        <button type='button'> Search </button>
+        <button type='button'> FAVORITE </button>
 
         <br/>
 
@@ -18,4 +16,4 @@ const Results = () => {
     );
 };
 
-export default Results;
+export default Favorites;
