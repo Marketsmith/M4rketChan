@@ -2,7 +2,8 @@ import * as actions from '../actions/actions.js';
 
 
 const initialState = {
-    initialstate: 0
+    initialstate: 0,
+    username: ''
 }
 
 
