@@ -10,7 +10,7 @@ const sharkreducers = (state = initialState, action) => {
 
   switch (action.type) {
 
-      case []:{
+      case [PLACEHOLDER]:{
 
 
       return {
