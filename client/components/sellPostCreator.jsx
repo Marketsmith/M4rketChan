@@ -1,29 +1,19 @@
 import React from 'react';
-// import { SELL_BUTTON } from '../constants/actionTypes';
-// import { BUY_BUTTON } from '../constants/actionTypes';
-import { useDispatch } from 'react-redux';
-import { sellButtonActionCreator } from '../actions/actions';
+import { Link } from 'react-router-dom';
 
-const sellItemCreator = () => {
-    const dispatch = useDispatch();
-
-    const handleClickSell = (input) => {
-        const action = sellButtonActionCreator(input);
-        dispatch(action);
-    }
-
-    const handleClickBuy = () => {
-        const input = document.querySelector('#buyButton').value;
-        const action = sellButtonActionCreator(input);
-        dispatch(action);
-    }
-
-    return (
-        <div className='sellItemCreator'>
-            <div>Sell an item</div>
-            <button onClick= {()=> handleClickSell()}>Sell</button>
-        </div>
-    )
+const SellItem = () => {
+  return (
+    <>
+      <Link to='/buyItem'>
+        <button type='button'> Sell </button>
+      </Link>
+      <br />
+      <Link to='/sellItem'>
+        <button type='button'> Sell </button>
+      </Link>
+      <br />
+    </>
+  );
 };
 
-export default sellItemCreator;
+export default SellItem;
