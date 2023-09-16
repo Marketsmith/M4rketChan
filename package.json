@@ -21,7 +21,8 @@
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.2",
     "react-router": "^6.15.0",
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.15.0",
+    "styled-components": "^6.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.22.17",
@@ -44,6 +45,3 @@
     "webpack-dev-server": "^4.15.1"
   }
 }
-
-
-
