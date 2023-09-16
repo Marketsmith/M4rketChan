@@ -7,36 +7,20 @@ import Results from './components/results'
 import Favorites from './components/favorites'
 import Search from './components/search'
 
-const App = () => {
 
-    return (
+const App = () => {
+  return (
     <>
 
-<Routes>
-
-    <Route
-    path="/"
-    element={<Navigation/>}
-    />
-
-    <Route
-    path="/results"
-    element={<Results />}
-    />
-     <Route
-    path="/search"
-    element={<Search />}
-    />
-
-<Route
-    path="/favorites"
-    element={<Favorites />}
-    />
-
-</Routes>
-</>
-    )
-
+      <Routes>
+        <Route path='/search' element={<Search />} />
+        <Route path='/results' element={<Result />} />
+        <Route path='/details' element={<Details />} />
+        <Route path='/sellItem' element={<CreateSellPosting />} />
+        <Route path='/' element={<HomePage />} />
+      </Routes>
+    </>
+  );
 
 };
 

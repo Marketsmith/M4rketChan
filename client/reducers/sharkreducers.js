@@ -1,9 +1,12 @@
 // import * as actions from '../actions/actions.js';
 
 
-// const initialState = {
-//     initialstate: 0
-// }
+
+const initialState = {
+    initialstate: 0,
+    username: ''
+}
+
 
 
 // const sharkreducers = (state = initialState, action) => {
