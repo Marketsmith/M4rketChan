@@ -2,7 +2,7 @@ import React from 'react';
 
 const Login = () => {
   return (
-  <div>
+  <>
     <h3 className='loginHeader'>Log In</h3>
     <form method="POST" action='/login'>
       <div>
@@ -28,7 +28,7 @@ const Login = () => {
         <input className='loginButton' type='submit' value="sign up"></input>
       </div>
     </form>
-  </div>
+  </>
   );
 };
 
