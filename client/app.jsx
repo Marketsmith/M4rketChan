@@ -1,8 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './stylesheets/styles.css';
+import './styles.css';
 
-import search from './search'
+import Navigation from './components/navigation'
+import Results from './components/results'
+import Favorites from './components/favorites'
+import Search from './components/search'
+
 const App = () => {
 
     return (
@@ -11,18 +15,22 @@ const App = () => {
 <Routes>
 
     <Route
-    path="/search"
-    element={<Search/>}
+    path="/"
+    element={<Navigation/>}
     />
 
     <Route
     path="/results"
-    element={<Result />}
+    element={<Results />}
+    />
+     <Route
+    path="/search"
+    element={<Search />}
     />
 
-    <Route
-    path="/details"
-    element={<Details />}
+<Route
+    path="/favorites"
+    element={<Favorites />}
     />
 
 </Routes>
