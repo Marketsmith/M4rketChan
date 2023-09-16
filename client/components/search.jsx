@@ -11,7 +11,7 @@ const Search = () => {
     return (
         <>
         <Navigation/>
-         <Link to='/details' >
+         <Link to='/search' >
                 <button type='button'> Details </button>
         </Link><br/>
         </>
