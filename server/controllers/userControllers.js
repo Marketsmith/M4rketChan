@@ -21,6 +21,13 @@ userController.login = (req, res, next) => {
           .compare(password, res.locals.user.password)
           .then(result => {
             if (result) res.locals.success = true;
+          })
+          .catch(err => {
+            return next({
+              err,
+              log: 'userController.login: bcrypt error',
+              message: 'userController.login: bcrypt error'
+            });
           });
       }
       return next();
@@ -49,7 +56,7 @@ userController.signUp = (req, res, next) => {
 
   User.find({ username })
     .then(data => {
-      if (data.length) {
+      if (data.length) { 
         res.locals.success = false;
         return next({
           log: 'username already exists, userController.signUp failed',
