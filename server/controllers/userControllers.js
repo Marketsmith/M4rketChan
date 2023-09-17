@@ -119,6 +119,47 @@ itemController.createItemListing = (req, res, next) => {
     });
 }
 
+userController.getListings = async (req,res,next) => {
+  let username;
+  username = readfile(username)
+  try {
+    const listingInfo = await User.findOne({username}).populate('items')
+    res.locals.listing = listingInfo;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'getListings did not work',
+      message: 'could not display listings',
+    });
+  }
+
+
+}
+
+
+// const itemSchema = new Schema({
+//   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+//   name: { type: String, required: true },
+//   date: { type: Number, default: Date.now() },
+//   description: { type: String, default: '' },
+//   city: { type: String, required: true },
+//   category: { type: String, required: true },
+//   address: { type: String },
+//   picture: { type: String },
+//   price: { type: Number }
+// });
+
+
+// const userSchema = new Schema({
+//   username: { type: String, required: true, unique: true },
+//   password: { type: String, required: true },
+//   email: { type: String },
+//   items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }]
+// });
+
+
 module.exports = {
   userController,
   itemController
