@@ -1,22 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from "styled-components";
+// // import React from 'react';
+// // import { Link } from 'react-router-dom';
+// // // import styled from "styled-components";
 
 
-const Container = styled.div `display: flex; flex-direction: row;`
+// // const Container = styled.div `display: flex; flex-direction: row;`
 
-const Search = () => {
+// // const Search = () => {
 
-    return (
-        <>
-        <Navigation/>
-        <Container>
-        <Link to='/results'>
-            <button type='button'> Search </button>
-        </Link>
-        </Container>
-        </>
-    );
-};
+//     return (
+//         <>
+//         <Navigation/>
+//         <Container>
+//         <Link to='/results'>
+//             <button type='button'> Search </button>
+//         </Link>
+//         </Container>
+//         </>
+//     );
+// };
 
-export default Search;
+// export default Search;
