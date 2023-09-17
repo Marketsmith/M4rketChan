@@ -1,7 +1,9 @@
 const { User } = require('../models/usersModel');
+const { Item } = require('../models/usersModel');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
+const itemController = {};
 const userController = {};
 
 userController.login = (req, res, next) => {
@@ -98,5 +100,23 @@ userController.signUp = (req, res, next) => {
   }
 
 };
+
+itemController.createItemListing = (req, res, next) => {
+  const newItem = req.body;
+  console.log('the request body is');
+  console.log(newItem)
+  Item.create(newItem)
+    .then((info)=>{
+      return next();
+    })
+    .catch((err) => {
+      console.error(err);
+      return next({
+        status: 400,
+        log: 'createItemListing did not work',
+        message: 'could not post item',
+      });
+    });
+}
 
 module.exports = userController;

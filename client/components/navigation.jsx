@@ -5,28 +5,23 @@ import {useState, useEffect} from 'react'
 
 const Navigation = () => {
 
-    const [page, setPage] = useState('')
     const navigate = useNavigate()
 
-    const handleClick= (e) => {
-        const selectedPage = e.target.value;
-        console.log('clicked');
-        setPage(selectedPage); // Set the state with the selected page
-        navigate(page); //
+    const handleClick= (event) => {
+        const selectedPage = event.target.value
+        navigate(selectedPage); // navigate ('./search')
     }
 
     return (
         <>
-        <div id='name'></div>
+        <label id = 'navBar'>
 
-        <label>
-            <div> Navigation
-            <select value={page} onChange = {handleClick}>
+            <select onChange = {handleClick}>
+                <option value = 'navigation'>Navigation</option>
                 <option value="./search">Search</option>
                 <option value="./favorites">Favorites</option>
-                <option value="./results" >Listing</option>
+                <option value="./listings" >Listing</option>
             </select>
-            </div>
 
         </label>
 

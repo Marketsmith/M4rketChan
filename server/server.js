@@ -1,17 +1,24 @@
 const express = require('express');
 const path = require('path');
 const userController = require('./controllers/userControllers.js');
+
+const itemController = require('./controllers/userControllers');
+
 const app = express();
 
 const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+app.get('*', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../public/index.html'));
 });
+//route for posting an item for sale, runs middleware then currently redirects to /search page
+app.post('/sellItem', itemController.createItemListing,(req, res)=>{
+  return res.redirect(303, '/search')
+})
 
 app.post('/login', userController.login, (req, res) => {
   if (res.locals.success) return res.status(200).json(res.locals.user);
