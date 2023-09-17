@@ -1,8 +1,6 @@
 const express = require('express');
 const path = require('path');
-const userController = require('./controllers/userControllers.js');
-
-const itemController = require('./controllers/userControllers');
+const { userController, itemController } = require('./controllers/userControllers.js');
 
 const app = express();
 
@@ -16,7 +14,7 @@ app.get('*', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../public/index.html'));
 });
 //route for posting an item for sale, runs middleware then currently redirects to /search page
-app.post('/sellItem', itemController.createItemListing,(req, res)=>{
+app.post('/sellItem', itemController.createItemListing, (req, res) => {
   return res.redirect(303, '/search')
 })
 

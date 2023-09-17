@@ -49,7 +49,7 @@ userController.login = (req, res, next) => {
 
 userController.signUp = (req, res, next) => {
   const { username, password } = req.body;
-  
+
   res.locals.success = true;
 
   if (!username || !password) {
@@ -62,7 +62,7 @@ userController.signUp = (req, res, next) => {
 
   User.findOne({ username })
     .then(data => {
-      if (data) { 
+      if (data) {
         res.locals.success = false;
         res.locals.exists = true;
         return next({
@@ -79,7 +79,7 @@ userController.signUp = (req, res, next) => {
         log: 'signup failed: error in finding username in userController.signUp'
       });
     });
-  
+
   if (res.locals.success) {
     User.create({ username, password })
       .then(data => {
@@ -119,4 +119,7 @@ itemController.createItemListing = (req, res, next) => {
     });
 }
 
-module.exports = userController;
+module.exports = {
+  userController,
+  itemController
+};
