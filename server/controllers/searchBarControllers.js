@@ -6,5 +6,7 @@ const searchBarController = {};
 
 
 searchBarController.populate = (req, res, next) => {
-    
+    models.Item.find()
 }
+
+module.exports = {searchBarController};

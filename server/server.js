@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { userController, itemController } = require('./controllers/userControllers.js');
+const { searchBarController } = require('./controllers/searchBarControllers.js')
 
 const app = express();
 
@@ -27,8 +28,8 @@ app.post('/signup', userController.signUp, (req, res) => {
   if (res.locals.success) return res.status(200).json(res.locals.user);
   else return res.status(200).json({});
 });
-//route for fetch get request from searchbar to populate on mounting of component (useEffect)
-app.get('/items', searchBarController.populate, (req, res) => {
+//route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
+app.get('/itemsByCity', searchBarController.populate, (req, res) => {
 
 });
 
