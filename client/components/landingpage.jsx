@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-const HomePage = () => {
+const HomePage = ({ isLoggedIn }) => {
+  if(!isLoggedIn) {
+    return <Redirect to='/signup'/>
+  }
+  
   return (
     <>
       <div>
@@ -22,4 +26,4 @@ const HomePage = () => {
   );
 };
 
-export default SellItem;
+export default HomePage;
