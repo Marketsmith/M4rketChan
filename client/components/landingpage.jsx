@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router'
 
 const HomePage = ({ isLoggedIn }) => {
+  const navigate = useNavigate()
   if(!isLoggedIn) {
-    return <Redirect to='/signup'/>
+    navigate ('/signup')
+
   }
-  
+
   return (
     <>
       <div>

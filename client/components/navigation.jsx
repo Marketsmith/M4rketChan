@@ -15,7 +15,6 @@ const Navigation = () => {
     return (
         <>
         <label id = 'navBar'>
-
             <select onChange = {handleClick}>
                 <option value = 'navigation'>Navigation</option>
                 <option value="./search">Search</option>

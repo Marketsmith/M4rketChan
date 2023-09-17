@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // const {User} = require('../Database/models');
 
-const Signup = () => {
+const Details = () => {
 
     const handleclick = async (e) => {
 
@@ -13,10 +13,10 @@ const Signup = () => {
 
     return (
         <>
-
+        <div>this is details page</div>
 
         </>
     );
 };
 
-export default Signup;
+export default Details;
