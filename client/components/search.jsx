@@ -7,7 +7,6 @@ import Searchbar from './searchbar.jsx'
 import Navigation from './navigation';
 
 
-// const Container = styled.div `display: flex; flex-direction: row;`
 
 
 const Search = () => {
@@ -15,7 +14,14 @@ const Search = () => {
    return (
         <>
        <Navigation/>
+       {/* <Container> */}
+         <Link to='/results'>
+            <button type='button'> Search </button>
+      </Link>
+        {/* </Container> */}
+
        <Searchbar/>
+
         </>
    );
 };
