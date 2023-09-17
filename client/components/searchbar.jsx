@@ -1,26 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {useState, useEffect} from 'react'
+import Navigation from './navigation';
+
 const Searchbar = () => {
-//array of items and cities that we can modify
-//items/categories and cities here should match the ones we use in our database just for simplicity
+
+//array of items and cities that we can modify 
+//items/categories and cities here should match the ones we use in our database just for simplicity 
 const cities = ['Los Angeles', 'Seattle'];
 const items = ['furniture', 'electronics'];
+        
 const [selectedItem, setSelectedItem] = useState('');
 const [selectedCity, setSelectedCity] = useState('');
+
 const handleItemChange = (event) => {
     setSelectedItem(event.target.value);
   };
+
   const handleCityChange = (event) => {
     setSelectedCity(event.target.value);
   };
+
   const handleSearch = () => {
+    fetch('http://localhost:3000/itemsByCity')
+      .then(data => data.json())
+      .then(parsedData => {
+        console.log(parsedData)
+      })
     // Implement fetch logic here based on selectedItem and selectedCity
+    
     // Make a GET request to the backend to retrieve the data test routes?? can't connect to mnogo for now
     // Update state?? and lead into rerendering of data component? where pictures and links are
   };
     return (
         <>
+        <Navigation />
+        <br/>
         <select value={selectedItem} onChange={handleItemChange}>
           <option value="">Select an item</option>
             {items.map((item, index) => (

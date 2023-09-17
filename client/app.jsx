@@ -14,6 +14,7 @@ import Login from './components/Login'
 
 import Details from './components/details'
 import Listings from './components/listings'
+import ImageUploader from './components/imageUploader';
 
 
 
@@ -33,7 +34,7 @@ const App = () => {
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/sellitem' element={<CreateSellPosting />} />
         <Route path='/listings' element={<Listings />} />
-
+        <Route path='/upload' element={<ImageUploader />} />
       </Routes>
     </>
   );
