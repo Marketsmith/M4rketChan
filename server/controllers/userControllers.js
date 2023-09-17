@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const itemController = {};
 const userController = {};
 
+
 userController.login = (req, res, next) => {
   const { username, password } = req.body;
 
@@ -119,4 +120,7 @@ itemController.createItemListing = (req, res, next) => {
     });
 }
 
-module.exports = userController;
+
+
+
+module.exports = { userController, itemController};
