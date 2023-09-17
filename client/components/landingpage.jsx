@@ -21,9 +21,11 @@ const HomePage = ({ isLoggedIn }) => {
         <button type='button'> Buy </button>
       </Link>
       <br />
+      <br />
       <Link to='/sellItem'>
         <button type='button'> Sell </button>
       </Link>
+      <br />
       <br />
     </>
   );

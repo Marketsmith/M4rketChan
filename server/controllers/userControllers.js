@@ -102,7 +102,16 @@ userController.signUp = (req, res, next) => {
 };
 
 itemController.createItemListing = (req, res, next) => {
-  const newItem = req.body;
+  const { user, name, date, description, category, city, picture} = req.body;
+  const newItem = {
+    user,
+    name,
+    date,
+    description,
+    category,
+    city,
+    picture,
+  }
   console.log('the request body is');
   console.log(newItem)
   Item.create(newItem)
