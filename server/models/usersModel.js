@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://connorkeyes:D36U8CGSL5maEh9h@cluster0.volzs1e.mongodb.net/?retryWrites=true&w=majority";
+const MONGO_URI = "mongodb+srv://connorkeyes:D36U8CGSL5maEh9h@cluster0.volzs1e.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to Mongo DB.'))
@@ -12,8 +12,11 @@ const itemSchema = new Schema({
   name: { type: String, required: true },
   date: { type: Number, default: Date.now() },
   description: { type: String, default: '' },
+  city: { type: String, required: true },
+  address: { type: String },
   picture: { type: String }
 });
+
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
@@ -33,8 +36,8 @@ userSchema.pre('save', function(next) {
   })
 })
 
-const Item = mongoose.Schema('Item', itemSchema);
-const User = mongoose.Schema('User', userSchema);
+const Item = mongoose.model('Item', itemSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
   Item,

@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-//const userController = require('./controllers/userController');
+const userController = require('./controllers/userControllers.js');
 const app = express();
 
 const PORT = 3000;
@@ -12,6 +12,17 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
+
+app.post('/login', userController.login, (req, res) => {
+  if (res.locals.success) return res.status(200).json(res.locals.user);
+  else return res.status(200).json({});
+});
+
+app.post('/signup', userController.signUp, (req, res) => {
+  if (res.locals.success) return res.status(200).json(res.locals.user);
+  else return res.status(200).json({});
+});
+
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
