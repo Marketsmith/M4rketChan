@@ -4,56 +4,81 @@ import React, { useState } from 'react';
 import Navigation from './navigation'
 
     const CreateSellPosting = () => {
-    // const [showPopup, setShowPopup] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedCity, setSelectedCity] = useState('');
+
     // debugger
     const popUpContent = (
         <div>
             <h2>Success!</h2>
-            <p>Your item has been posted for sale.</p>
+            <p>Your item has been posted for sale</p>
             <button onClick = {()=>setShowPopup(false)}>Close</button>
         </div>
     );
-    // const handleClick = async (e) => {
-    //     e.preventDefault();
-
-    //     //logic
-    //     setShowPopup(true);
-    // }
   return (
       <div>
         <Navigation />
       <h3>Post an item for sale</h3>
       <form method='POST' action='/sellItem'>
-        <input
-          name='user'
-          type='text'
-          placeholder='user name'
-        ></input>
+        <br/>
+        <br/>
         <input
           name='name'
           type='text'
-          placeholder='Item name'
+          placeholder='item name'
         ></input>
+         <br/>
+         <br/>
         <input
           name='date'
           type='text'
           placeholder='date'
         ></input>
+         <br/>
+         <br/>
         <input
           name='description'
           type='text'
-          placeholder='Item description'
+          placeholder='item description'
         ></input>
+         <br/>
+         <br/>
+        <label>Category: </label>
+        <select
+          name='category'
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value=''>Select a category </option>
+          <option value='electronics'>Electronics</option>
+          <option value='clothing'>Clothing</option>
+          <option value='furniture'>Furniture</option>
+          {/* Add more category options as needed */}
+        </select>
+        <br/>
+        <br/>
+        <label>City: </label>
+        <select
+          name='city'
+          value={selectedCity}
+          onChange={(e) => setSelectedCity(e.target.value)}
+        >
+          <option value=''>Select a city</option>
+          <option value='new-york'>New York</option>
+          <option value='los-angeles'>Los Angeles</option>
+          <option value='chicago'>Chicago</option>
+          {/* Add more city options as needed */}
+        </select>
+        <br/>
+        <br/>
         <span>Upload a photo of the item</span>
+        <br/>
+        <br/>
         <input type='file' id='myFile' name='picture' />
-        <input type="submit"></input>
+        <br/>
+        <br/>
         <input type='submit' name='_method' value='Post the item for sale' />
       </form>
-    {/* {showPopup && (
-        <div>
-            {popUpContent};
-        </div>
-    )} */}
     </div>
   );
 };

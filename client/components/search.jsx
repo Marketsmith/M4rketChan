@@ -9,6 +9,9 @@ import Navigation from './navigation';
 
 
 
+// const Container = styled.div `display: flex; flex-direction: row;`
+
+
 const Search = () => {
 
    return (
@@ -19,6 +22,7 @@ const Search = () => {
             <button type='button'> Search </button>
       </Link>
         {/* </Container> */}
+
 
        <Searchbar/>
 
