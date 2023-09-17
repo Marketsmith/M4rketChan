@@ -1,11 +1,12 @@
 const { User } = require('../models/usersModel');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 
 const userController = {};
 
 userController.login = (req, res, next) => {
   const { username, password } = req.body;
-  
+
   if (!username || !password) {
     return next({
       log: 'props not passed into userController.login',
@@ -13,10 +14,12 @@ userController.login = (req, res, next) => {
     });
   }
 
+  let loggedIn;
+
   User.findOne({ username })
     .then(data => {
-      if (data.length) {
-        res.locals.user = data[0];
+      if (data) {
+        res.locals.user = data;
         bcrypt
           .compare(password, res.locals.user.password)
           .then(result => {
@@ -31,7 +34,7 @@ userController.login = (req, res, next) => {
             });
           });
       }
-      return next();
+      else return next();
     })
     .catch(err => {
       return next({
@@ -55,9 +58,9 @@ userController.signUp = (req, res, next) => {
     });
   }
 
-  User.find({ username })
+  User.findOne({ username })
     .then(data => {
-      if (data.length) { 
+      if (data) { 
         res.locals.success = false;
         res.locals.exists = true;
         return next({
@@ -78,7 +81,8 @@ userController.signUp = (req, res, next) => {
   if (res.locals.success) {
     User.create({ username, password })
       .then(data => {
-        res.locals.user = data[0];
+        console.log(data);
+        res.locals.user = data;
         res.locals.success = true;
         console.log(`User ${username} successfully created!`);
         return next();

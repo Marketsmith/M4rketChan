@@ -13,8 +13,10 @@ const itemSchema = new Schema({
   date: { type: Number, default: Date.now() },
   description: { type: String, default: '' },
   city: { type: String, required: true },
+  category: { type: String, required: true },
   address: { type: String },
-  picture: { type: String }
+  picture: { type: String },
+  price: { type: Number }
 });
 
 
@@ -38,6 +40,11 @@ userSchema.pre('save', function(next) {
 
 const Item = mongoose.model('Item', itemSchema);
 const User = mongoose.model('User', userSchema);
+
+const cities = ['Los Angeles', 'Seattle'];
+const categories = ['furniture', 'electronics'];
+
+
 
 module.exports = {
   Item,
