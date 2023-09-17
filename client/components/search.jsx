@@ -4,12 +4,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Searchbar from './searchbar.jsx'
-
 import Navigation from './navigation';
 
-
-
-// const Container = styled.div `display: flex; flex-direction: row;`
 
 
 
@@ -23,11 +19,12 @@ const Search = () => {
             <button type='button'> Search </button>
       </Link>
         {/* </Container> */}
+
+       <Searchbar/>
+
         </>
    );
 };
-
-
 
 
 export default Search;

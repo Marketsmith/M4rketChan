@@ -33,6 +33,15 @@ app.get('/itemsByCity', searchBarController.populate, (req, res) => {
 
 });
 
+app.post('/upload', (req, res) => {
+  return res.status(200).json({});
+})
+
+app.get('/listings', userController.getListings, (req, res) => {
+  return res.status(200).json(res.locals.listings)
+})
+
+
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
 

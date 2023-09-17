@@ -1,22 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from './navigation';
+import {useState, useEffect} from 'react'
 
 const Listings = () => {
+
+    const [listings, setListings] = useState([]);
+
+    fetch('/listings')
+    .then(data => data.json())
+    .then(data => setListings(data.items))
 
     return (
         <>
         <Navigation/>
+        <br/>
         <div>Your listings</div>
         <div id='listing container'>
-            {/* <img src ='' alt = 'loading pic'></img> */}
-            <div>
-                {/* <div>{price}</div>
-                <div>{date}</div> */}
-            </div>
+            {listings && listings.map(item=> {
+            return (
+                <>
+                <img src ={`${listings.picture}`} alt = 'loading pic'></img>
+                <div>Price: {listings.price}</div>
+                <div>Date posted: {listings.date}</div>
+                <button type='button'>Delete</button>
+                </>
+            )})}
         </div>
-
-
 
         <br/>
 
