@@ -7,10 +7,10 @@ const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+app.get('*', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Unknown route handler
