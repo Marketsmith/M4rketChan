@@ -1,9 +1,11 @@
 //This is the page that lets you create a post for an item to sell
 
 import React, { useState } from 'react';
+import Navigation from './navigation'
 
     const CreateSellPosting = () => {
-    const [showPopup, setShowPopup] = useState(false);
+    // const [showPopup, setShowPopup] = useState(false);
+    // debugger
     const popUpContent = (
         <div>
             <h2>Success!</h2>
@@ -11,17 +13,17 @@ import React, { useState } from 'react';
             <button onClick = {()=>setShowPopup(false)}>Close</button>
         </div>
     );
-    const handleClick = async (e) => {
-        e.preventDefault();
+    // const handleClick = async (e) => {
+    //     e.preventDefault();
 
-        //logic
-        setShowPopup(true);
-    }
+    //     //logic
+    //     setShowPopup(true);
+    // }
   return (
       <div>
         <Navigation />
       <h3>Post an item for sale</h3>
-      <form method='POST' action='/sellItem' onSubmit={handleClick}>
+      <form method='POST' action='/sellItem'>
         <input
           name='user'
           type='text'
@@ -47,11 +49,11 @@ import React, { useState } from 'react';
         <input type="submit"></input>
         <input type='submit' name='_method' value='Post the item for sale' />
       </form>
-    {showPopup && (
+    {/* {showPopup && (
         <div>
             {popUpContent};
         </div>
-    )}
+    )} */}
     </div>
   );
 };
