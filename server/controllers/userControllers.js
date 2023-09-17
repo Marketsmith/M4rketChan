@@ -119,6 +119,12 @@ itemController.createItemListing = (req, res, next) => {
     });
 }
 
+itemController.uploadImage = (req, res, next) => {
+  const { title, desc, image } = req.body;
+
+  
+};
+
 module.exports = {
   userController,
   itemController
