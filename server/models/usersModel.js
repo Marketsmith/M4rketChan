@@ -12,6 +12,7 @@ const itemSchema = new Schema({
   name: { type: String, required: true },
   date: { type: Number, default: Date.now() },
   description: { type: String, default: '' },
+  price: { type: Number },
   picture: { type: String }
 });
 

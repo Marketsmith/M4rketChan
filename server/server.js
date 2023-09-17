@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-//const userController = require('./controllers/userController');
+const itemController = require('./controllers/userControllers');
 const app = express();
 
 const PORT = 3000;
@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('*', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../public/index.html'));
 });
+//route for posting an item for sale, runs middleware then currently redirects to /search page
+app.post('/sellItem', itemController.createItemListing,(req, res)=>{
+  return res.redirect(303, '/search')
+})
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
