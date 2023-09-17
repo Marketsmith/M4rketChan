@@ -1,30 +1,57 @@
-import React from 'react';
+//This is the page that lets you create a post for an item to sell
 
-const CreateSellPosting = () => {
+import React, { useState } from 'react';
+
+    const CreateSellPosting = () => {
+    const [showPopup, setShowPopup] = useState(false);
+    const popUpContent = (
+        <div>
+            <h2>Success!</h2>
+            <p>Your item has been posted for sale.</p>
+            <button onClick = {()=>setShowPopup(false)}>Close</button>
+        </div>
+    );
+    const handleClick = async (e) => {
+        e.preventDefault();
+
+        //logic
+        setShowPopup(true);
+    }
   return (
       <div>
         <Navigation />
       <h3>Post an item for sale</h3>
-      <form method='POST' action='/sellItem'>
+      <form method='POST' action='/sellItem' onSubmit={handleClick}>
         <input
-          name='itemname'
+          name='user'
+          type='text'
+          placeholder='user name'
+        ></input>
+        <input
+          name='name'
           type='text'
           placeholder='Item name'
         ></input>
         <input
-          name='itemdescription'
+          name='date'
           type='text'
-          placeholder='Describe the item'
+          placeholder='date'
         ></input>
         <input
-          name='price'
+          name='description'
           type='text'
-          placeholder='Listing price'
+          placeholder='Item description'
         ></input>
         <span>Upload a photo of the item</span>
-        <input type='file' id='myFile' name='filename' />
+        <input type='file' id='myFile' name='picture' />
+        <input type="submit"></input>
         <input type='submit' name='_method' value='Post the item for sale' />
       </form>
+    {showPopup && (
+        <div>
+            {popUpContent};
+        </div>
+    )}
     </div>
   );
 };
