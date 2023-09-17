@@ -119,11 +119,31 @@ itemController.createItemListing = (req, res, next) => {
     });
 }
 
+
 itemController.uploadImage = (req, res, next) => {
   const { title, desc, image } = req.body;
 
   
 };
+
+userController.getListings = async (req,res,next) => {
+  let username;
+  username = readfile(username)
+  try {
+    const listingInfo = await User.findOne({username}).populate('items')
+    res.locals.listing = listingInfo;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'getListings did not work',
+      message: 'could not display listings',
+    });
+  }
+
+}
+
 
 module.exports = {
   userController,

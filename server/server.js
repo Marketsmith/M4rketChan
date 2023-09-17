@@ -28,9 +28,15 @@ app.post('/signup', userController.signUp, (req, res) => {
   else return res.status(200).json({});
 });
 
+
 app.post('/upload', (req, res) => {
   return res.status(200).json({});
 })
+
+app.get('/listings', userController.getListings, (req, res) => {
+  return res.status(200).json(res.locals.listings)
+})
+
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
