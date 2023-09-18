@@ -30,6 +30,7 @@ const CreateSellPosting = () => {
         <input name="description" type="text" placeholder="item description" />
         <br />
         <br />
+        
         <input name="price" type="text" placeholder="price" />
         <br />
         <br />
