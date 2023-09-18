@@ -8,8 +8,8 @@ const Searchbar = () => {
 //array of items and cities that we can modify 
 //items/categories and cities here should match the ones we use in our database just for simplicity 
 const cities = ['los-angeles', 'new-york', 'chicago'];
-const items = ['furniture', 'electronics'];
-        
+const items = ['furniture', 'electronics', 'clothing'];
+
 const [selectedItem, setSelectedItem] = useState('');
 const [selectedCity, setSelectedCity] = useState('');
 //state to store data from server response
@@ -82,6 +82,7 @@ const handleItemChange = (event) => {
                 <img src ={item.picture} alt= 'loading pic'></img>
                 <h2>{item.name}</h2>
                 <p>{item.description}</p>
+                <p>{item.price}</p>
             </div>
         ))}
         </>
