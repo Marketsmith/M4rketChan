@@ -17,7 +17,7 @@ const HomePage = ({ isLoggedIn }) => {
       <div>
         <h3>Choose an option below</h3>
       </div>
-      <Link to="/search">
+      <Link to="/searchBar">
         <button type="button"> Buy </button>
       </Link>
       <br />
