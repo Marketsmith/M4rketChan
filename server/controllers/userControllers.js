@@ -3,6 +3,14 @@ const { Item } = require('../models/usersModel');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: 'dlxfkrk48',
+  api_key: '374659647111771',
+  api_secret: 'd_3n7CUCzkxNfibszUer0UrxR2Y',
+  secure: true
+});
+
 const itemController = {};
 const userController = {};
 
@@ -133,8 +141,40 @@ itemController.createItemListing = (req, res, next) => {
 
 
 itemController.uploadImage = (req, res, next) => {
-  const { picture } = req.body;
-  
+  console.log(req.body);
+  const { title, desc, image } = req.body;
+
+
+  console.log(title, desc);
+  console.log(image);
+
+  return next();
+
+  // const uploadImage = async (imagePath) => {
+
+  //   // Use the uploaded file's name as the asset's public ID and
+  //   // allow overwriting the asset with new versions
+  //   const options = {
+  //     use_filename: true,
+  //     unique_filename: false,
+  //     overwrite: true,
+  //   };
+
+  //   try {
+  //     // Upload the image
+  //     const result = await cloudinary.uploader.upload(imagePath, options);
+  //     console.log(result);
+  //     return result.public_id;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+
+  // };
+
+  // uploadImage(image)
+  //   .then(response => {
+  //     return next()
+  //   });
 
 
 };

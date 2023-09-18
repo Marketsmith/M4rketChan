@@ -11,6 +11,13 @@ const { sessionController } = require("./controllers/sessionController");
 const expressPino = require("express-pino-logger");
 const cookieParser = require("cookie-parser");
 
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const { userController, itemController } = require('./controllers/userControllers.js');
+const { searchBarController } = require('./controllers/searchBarControllers.js')
+
+
 const app = express();
 app.use(cookieParser());
 
@@ -28,6 +35,11 @@ app.use(
     },
   })
 );
+
+// Enable CORS for all routes to make sure we don't get cross server errors
+app.use(cors());
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
@@ -52,6 +64,7 @@ app.post("/signup", userController.signUp, (req, res) => {
 });
 
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
+
 // app.get('/itemsByCity', searchBarController.populate, (req, res) => {
 
 // });
@@ -63,6 +76,20 @@ app.post("/upload", userController.upload, (req, res) => {
 app.get("*", (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
+
+app.post('/itemsByCity', searchBarController.populate, (req, res) => {
+  return res.status(200).json(res.locals);
+});
+
+app.post('/upload', itemController.uploadImage, (req, res) => {
+  return res.status(200).json({});
+});
+
+app.get('/listings', userController.getListings, (req, res) => {
+  return res.status(200).json(res.locals.listings)
+});
+
+
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
