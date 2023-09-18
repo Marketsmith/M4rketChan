@@ -7,34 +7,58 @@ const Searchbar = () => {
 
 //array of items and cities that we can modify 
 //items/categories and cities here should match the ones we use in our database just for simplicity 
-const cities = ['Los Angeles', 'Seattle'];
+const cities = ['los-angeles', 'new-york'];
 const items = ['furniture', 'electronics'];
         
 const [selectedItem, setSelectedItem] = useState('');
 const [selectedCity, setSelectedCity] = useState('');
+//state to store data from server response
+const [itemsData, setItemsData] = useState([]);
+
 
 const handleItemChange = (event) => {
     setSelectedItem(event.target.value);
+    console.log(selectedItem);
+    //unsure how to view what state currently is even though when updated it shows as blank in browser
   };
 
   const handleCityChange = (event) => {
     setSelectedCity(event.target.value);
+    console.log(selectedCity);
   };
 
   const handleSearch = () => {
-    fetch('http://localhost:3000/itemsByCity')
+    //object with selectedItem and selectedCity to send as post request within fetch to backend
+    const searchData = {
+        selectedItem,
+        selectedCity,
+    };
+    //fetch post request to itemsByCity route to retrieve queried data 
+    fetch('http://localhost:3000/itemsByCity', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+          },
+        body: JSON.stringify(searchData), // Convert data to JSON, must be sent as object like we did here
+     })
       .then(data => data.json())
       .then(parsedData => {
-        console.log(parsedData)
-      })
-    // Implement fetch logic here based on selectedItem and selectedCity
+        console.log('this is the data:', parsedData);
+        //updated itemData state with fetched data
+        setItemsData(parsedData);
+      }).catch((error) => {
+        console.log('Error retrieving data:', error)
+    });
     
-    // Make a GET request to the backend to retrieve the data test routes?? can't connect to mnogo for now
-    // Update state?? and lead into rerendering of data component? where pictures and links are
   };
+
+      //trigger useEffect whenever itemsData state changes by including it as dependency
+      useEffect(() => {
+
+    }, [itemsData]);
+
     return (
         <>
-        <Navigation />
         <br/>
         <select value={selectedItem} onChange={handleItemChange}>
           <option value="">Select an item</option>
@@ -47,10 +71,31 @@ const handleItemChange = (event) => {
           <option key={index} value={city}> {city} </option>))}
         </select>
         <button onClick={handleSearch}>Search</button>
+
+        {/* Display itemsData on stateChange */}
+        {/* Supposed to need a key when you are mappping a component in your component file. 
+        For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
+        {itemsData.map((item, index) => (
+            <div className="item-box">
+                {/* update what we want to show here exactly is it the photo? */}
+                <img src ={item.picture} alt= 'loading pic'></img>
+                <h2>{item.name}</h2>
+                <p>{item.description}</p>
+            </div>
+        ))};
         </>
     );
+
+
 };
+
 export default Searchbar;
+
+
+
+
+
+
     //get fetch request on some endpoint that grabs mongodb (backend)
     //json data
     //[array of categories]
