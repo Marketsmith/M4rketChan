@@ -57,19 +57,39 @@ const Searchbar = () => {
       });
   };
 
+
   //trigger useEffect whenever itemsData state changes by including it as dependency
   useEffect(() => {}, [itemsData]);
 
-  return (
-    <>
-      <Navigation />
-      <br />
-      <select value={selectedItem} onChange={handleItemChange}>
-        <option value="">Select an item</option>
-        {items.map((item, index) => (
-          <option key={index} value={item}>
-            {item}
-          </option>
+ 
+    return (
+        <>
+        <Navigation />
+        <br/>
+        <select value={selectedItem} onChange={handleItemChange}>
+          <option value="">Select an item</option>
+            {items.map((item, index) => (
+          <option key={index} value={item}>{item}</option>))}
+        </select>
+        <select value={selectedCity} onChange={handleCityChange}>
+          <option value="">Select a city</option>
+            {cities.map((city, index) => (
+          <option key={index} value={city}> {city} </option>))}
+        </select>
+        <button onClick={handleSearch}>Search</button>
+
+        {/* Display itemsData on stateChange */}
+        {/* Supposed to need a key when you are mappping a component in your component file. 
+        For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
+        {itemsData.map((item, index) => (
+            <div className="item-box">
+                {/* update what we want to show here exactly is it the photo? */}
+                <h2>{item.name}</h2>
+                <img src ={item.picture} alt= 'loading pic'></img>
+                <p>description: {item.description}</p>
+                <p>price: {item.price}</p>
+            </div>
+
         ))}
       </select>
       <select value={selectedCity} onChange={handleCityChange}>
