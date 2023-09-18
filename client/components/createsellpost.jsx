@@ -13,15 +13,6 @@ const CreateSellPosting = () => {
       <Navigation />
       <h3>Post an item for sale</h3>
 
-      <form method='POST' action='/sellItem'>
-        <input
-          name='name'
-          type='text'
-          placeholder='item name'
-        ></input>
-         <br/>
-         <br/>
-
       <form method="POST" action="/sellItem">
         <br />
         <br />
