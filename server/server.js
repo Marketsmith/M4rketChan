@@ -62,6 +62,26 @@ app.post("/signup", userController.signUp, (req, res) => {
   else return res.status(200).json({});
 });
 
+
+app.get('/api/homebase', (req, res) => {
+  res.status(200).json(true)
+
+});
+
+app.get('/login', userController.login, (req, res) => {
+  res.status(200).json(res.locals.success)
+});
+
+app.get("/api/home", sessionController.isLoggedIn, (req, res) => {
+  console.log(res.locals.isLoggedIn, "in the controller");
+  return res.send(res.locals.isLoggedIn);
+});
+
+app.get('/listings', sessionController.isLoggedIn, userController.getListings, (req, res) => {
+  return res.status(200).json(res.locals.listings)
+})
+
+
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
 
 // app.get('/itemsByCity', searchBarController.populate, (req, res) => {
@@ -100,21 +120,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
-
-// app.get('/api/homebase', (req, res) => {
-//   res.status(200).json(true)
-
-// });
-
-// app.get('/login', userController.login, (req, res) => {
-//   res.status(200).json(res.locals.success)
-// });
-
-// app.get("/api/home", sessionController.isLoggedIn, (req, res) => {
-//   console.log(res.locals.isLoggedIn, "in the controller");
-//   return res.send(res.locals.isLoggedIn);
-// });
-
-// app.get('/listings', sessionController.isLoggedIn, userController.getListings, (req, res) => {
-//   return res.status(200).json(res.locals.listings)
-// })

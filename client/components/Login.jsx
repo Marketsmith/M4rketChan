@@ -55,49 +55,52 @@ const Login = () => {
   };
 
   return (
-    <>
-      <h3 className="loginHeader">Log In</h3>
-      <div id="errormsg"></div>
+    <div className = 'loginpage'>
+    <div className = 'loginbox'>
+    <div>
+    <h3 className="loginHeader">Welcome to the Goblin Market</h3>
+    <div id="errormsg"></div>
+    <form onSubmit={handleSubmitLogin}>
+      <input
+        id="username"
+        name="username"
+        type="text"
+        placeholder="username"
+      ></input>{" "}
       <br />
-      <form onSubmit={handleSubmitLogin}>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          placeholder="username"
-        ></input>{" "}
-        <br />
-        <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="password"
-        ></input>{" "}
-        <br />
-        <button className="loginButton" type="submit" value="log in">
-          Log In
-        </button>{" "}
-        <br />
-      </form>
-      <h3 id="loginOr">
-        ------------------------------ or ------------------------------
-      </h3>
-      <h3 className="loginHeader">Sign Up</h3>
-      <form onSubmit={handleSubmitSignUp}>
-        <input name="username" type="text" placeholder="username"></input>{" "}
-        <br />
-        <input
-          name="password"
-          type="password"
-          placeholder="password"
-        ></input>{" "}
-        <br />
-        <button className="loginButton" type="submit" value="sign up">
-          Sign Up
-        </button>{" "}
-        <br />
-      </form>
-    </>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        placeholder="password"
+      ></input>{" "}
+      <br />
+      <button className="loginButton" type="submit" value="log in">
+        Log In
+      </button>{" "}
+      <br />
+    </form>
+    <h3 id="loginOr">
+     </h3>
+     <div/>
+    <h3 className="loginHeader">Sign Up</h3>
+    <form onSubmit={handleSubmitSignUp}>
+      <input name="username" type="text" placeholder="username"></input>{" "}
+      <br />
+      <input
+        name="password"
+        type="password"
+        placeholder="password"
+      ></input>{" "}
+      <br />
+      <button className="loginButton" type="submit" value="sign up">
+        Sign Up
+      </button>{" "}
+      <br />
+    </form>
+    </div>
+    </div>
+</div>
   );
 };
 

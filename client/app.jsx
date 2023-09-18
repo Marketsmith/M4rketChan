@@ -16,7 +16,7 @@ import Searchbar from './components/searchbar';
 
 const App = () => {
   return (
-    <>
+    <div>
 
       <Routes>
         <Route path='/' element={<Login />} />
@@ -31,7 +31,7 @@ const App = () => {
 
 
       </Routes>
-    </>
+    </div>
   );
 
 };
