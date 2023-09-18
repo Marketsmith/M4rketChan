@@ -22,12 +22,14 @@ const App = () => {
         <Route path='/' element={<Login />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/results' element={<Results />} />
-        <Route path='/details' element={<Details />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/sellitem' element={<CreateSellPosting />} />
         <Route path='/listings' element={<Listings />} />
         <Route path='/upload' element={<ImageUploader />} />
         <Route path='/searchBar' element={<Searchbar />} />
+          <Route path='/details' element={<Details />} />
+
+
       </Routes>
     </>
   );
