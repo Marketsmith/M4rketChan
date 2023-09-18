@@ -12,6 +12,16 @@ const CreateSellPosting = () => {
     <div>
       <Navigation />
       <h3>Post an item for sale</h3>
+
+      <form method='POST' action='/sellItem'>
+        <input
+          name='name'
+          type='text'
+          placeholder='item name'
+        ></input>
+         <br/>
+         <br/>
+
       <form method="POST" action="/sellItem">
         <br />
         <br />
@@ -21,6 +31,7 @@ const CreateSellPosting = () => {
         <input name="date" type="text" placeholder="date"></input>
         <br />
         <br />
+
         <input
           name="description"
           type="text"
