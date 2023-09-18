@@ -17,9 +17,10 @@ const Navigation = () => {
         <label id = 'navBar'>
             <select onChange = {handleClick}>
                 <option value ='navigation'>Navigation</option>
-                <option value="./search">Search</option>
-                <option value="./favorites">Favorites</option>
-                <option value="./listings" >Listing</option>
+                <option value="/searchBar">Search</option>
+                <option value="/sellitem">Sell</option>
+                {/* <option value="/favorites">Favorites</option>
+                <option value="/listings" >Listing</option> */}
             </select>
 
         </label>

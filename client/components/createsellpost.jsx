@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Navigation from "./navigation";
 import ImageUploader from './imageUploader'
 
+
 const CreateSellPosting = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
@@ -14,8 +15,8 @@ const CreateSellPosting = () => {
   console.log('city:', selectedCity);
 
   return (
-    <div>
-      <Navigation />
+    <div className="sellbody">
+      <Navigation/>
       <h3>Post an item for sale</h3>
 
       <form method="POST" action="/sellItem">

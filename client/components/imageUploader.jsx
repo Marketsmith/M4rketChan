@@ -39,6 +39,7 @@ const imageUploader = props => {
       .catch(err => console.log(err))
   }
 
+  // https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 
   return (
@@ -48,7 +49,6 @@ const imageUploader = props => {
         <button onClick={uploadImage} type='button'>Upload</button>
       </div>
       <div>
-        <h1>Uploaded image will be displayed here</h1>
         <img src={url}/>
       </div>
     </div>
