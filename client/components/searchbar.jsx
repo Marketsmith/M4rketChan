@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
 import Navigation from './navigation';
 
 const Searchbar = () => {
 
 //array of items and cities that we can modify 
 //items/categories and cities here should match the ones we use in our database just for simplicity 
-const cities = ['los-angeles', 'new-york'];
+const cities = ['los-angeles', 'new-york', 'chicago'];
 const items = ['furniture', 'electronics'];
         
 const [selectedItem, setSelectedItem] = useState('');
@@ -59,6 +59,7 @@ const handleItemChange = (event) => {
 
     return (
         <>
+        <Navigation />
         <br/>
         <select value={selectedItem} onChange={handleItemChange}>
           <option value="">Select an item</option>
@@ -82,7 +83,7 @@ const handleItemChange = (event) => {
                 <h2>{item.name}</h2>
                 <p>{item.description}</p>
             </div>
-        ))};
+        ))}
         </>
     );
 

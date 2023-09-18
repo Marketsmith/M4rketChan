@@ -44,7 +44,8 @@ app.get("*", (req, res) => {
 
 //route for posting an item for sale, runs middleware then currently redirects to /search page
 app.post("/sellItem", itemController.createItemListing, (req, res) => {
-  return res.redirect(303, "/search");
+  // return res.redirect(303, "/searchBar");
+  return res.status(303);
 });
 
 app.post("/login", userController.login, (req, res) => {

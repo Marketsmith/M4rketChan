@@ -5,9 +5,13 @@ import { CLOUDINARY_CONSTS } from '../constants/actionTypes';
 const { cloud_name, upload_preset } = CLOUDINARY_CONSTS;
 
 
-const imageUploader = () => {
-  const [ image, setImage ] = useState("");
-  const [ url, setUrl ] = useState("");
+
+const imageUploader = props => {
+  const [image, setImage] = useState('');
+
+  const { url, setUrl } = props;
+
+  
   const uploadImage = () => {
     const data = new FormData()
     data.append("file", image)
@@ -15,19 +19,23 @@ const imageUploader = () => {
     data.append("cloud_name", cloud_name)
     fetch(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, {
       method:"post",
-      body: data
+      body: data,
+      // headers: {
+      //   'content-type': 'application/json'
+      // }
       })
       .then(resp => resp.json())
       .then(data => {
-        setUrl(data.url)
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAA')
         console.log(data);
         console.log(data.url);
+        setUrl(data.url);
       })
-      .then(data => {
-        fetch('/upload', {
+      // .then(data => {
+      //   fetch('/upload', {
 
-        })
-      })
+      //   })
+      // })
       .catch(err => console.log(err))
   }
 
@@ -37,7 +45,7 @@ const imageUploader = () => {
     <div>
       <div>
         <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
-        <button onClick={uploadImage}>Upload</button>
+        <button onClick={uploadImage} type='button'>Upload</button>
       </div>
       <div>
         <h1>Uploaded image will be displayed here</h1>

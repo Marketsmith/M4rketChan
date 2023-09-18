@@ -2,10 +2,16 @@
 
 import React, { useState } from "react";
 import Navigation from "./navigation";
+import ImageUploader from './imageUploader'
 
 const CreateSellPosting = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [url, setUrl] = useState('');
+
+  console.log('url:', url);
+  console.log('cat:', selectedCategory);
+  console.log('city:', selectedCity);
 
   return (
     <div>
@@ -55,9 +61,15 @@ const CreateSellPosting = () => {
         <span>Upload a photo of the item</span>
         <br />
         <br />
-        <input type="file" id="myFile" name="picture" />
+        {/* <input type="file" id="myFile" name="picture" /> */}
 
+        <ImageUploader 
+          setUrl={setUrl}
+          url={url}
+        />
         <br />
+
+        <input name="picture" value={url} readOnly></input>
         <input type="submit" name="_method" value="Post the item for sale" />
       </form>
     </div>
