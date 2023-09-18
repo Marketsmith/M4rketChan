@@ -1,11 +1,10 @@
 // import * as actions from '../actions/actions.js';
 
 
-
-const initialState = {
-    initialstate: 0,
-    username: ''
-}
+// const initialState = {
+//     username: '',
+//     password: ''
+// }
 
 
 
@@ -13,13 +12,11 @@ const initialState = {
 
 //   switch (action.type) {
 
-//       case [PLACEHOLDER]:{
-
-
+//       case LOGIN_INFO:{
 //       return {
 //         ...state,
-//         initialstate: state.initialstate+1
-
+//         username: action.payload[0],
+//         password: action.payload[1]
 //       }
 //     }
 

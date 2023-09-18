@@ -17,14 +17,3 @@ const Details = (props) => {
 
 export default Details;
 
-// const itemSchema = new Schema({
-//     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-//     name: { type: String, required: true },
-//     date: { type: Number, default: Date.now() },
-//     description: { type: String, default: '' },
-//     city: { type: String, required: true },
-//     category: { type: String, required: true },
-//     address: { type: String },
-//     picture: { type: String },
-//     price: { type: Number }
-//   });
