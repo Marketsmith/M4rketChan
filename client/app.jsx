@@ -12,6 +12,7 @@ import Favorites from './components/favorites'
 import CreateSellPosting from './components/createsellpost'
 import Listings from './components/listings'
 import ImageUploader from './components/imageUploader';
+import Searchbar from './components/searchbar';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/sellitem' element={<CreateSellPosting />} />
         <Route path='/listings' element={<Listings />} />
         <Route path='/upload' element={<ImageUploader />} />
+        <Route path='/searchBar' element={<Searchbar />} />
       </Routes>
     </>
   );
