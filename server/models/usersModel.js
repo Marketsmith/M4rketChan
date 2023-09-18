@@ -16,7 +16,7 @@ const itemSchema = new Schema({
   category: { type: String, required: true },
   address: { type: String },
   picture: { type: String },
-  price: { type: Number }
+  price: { type: String }
 });
 
 
