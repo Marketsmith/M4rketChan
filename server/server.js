@@ -13,6 +13,7 @@ const cookieParser = require("cookie-parser");
 const cors = require('cors');
 
 
+
 const app = express();
 app.use(cookieParser());
 
@@ -34,10 +35,13 @@ app.use(
 // Enable CORS for all routes to make sure we don't get cross server errors
 app.use(cors());
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.get("*", (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 //route for posting an item for sale, runs middleware then currently redirects to /search page
 app.post("/sellItem", itemController.createItemListing, (req, res) => {
@@ -64,27 +68,21 @@ app.post("/signup", userController.signUp, (req, res) => {
 
 // });
 
-app.post("/upload", userController.upload, (req, res) => {
-  return res.status(200).json({});
-});
+// app.post("/upload", userController.upload, (req, res) => {
+//   return res.status(200).json({});
+// });
 
-app.get("*", (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
-});
-
-app.post('/itemsByCity', searchBarController.populate, (req, res) => {
+app.post("/itemsByCity", searchBarController.populate, (req, res) => {
   return res.status(200).json(res.locals);
 });
 
-app.post('/upload', itemController.uploadImage, (req, res) => {
+app.post("/upload", itemController.uploadImage, (req, res) => {
   return res.status(200).json({});
 });
 
-app.get('/listings', userController.getListings, (req, res) => {
-  return res.status(200).json(res.locals.listings)
+app.get("/listings", userController.getListings, (req, res) => {
+  return res.status(200).json(res.locals.listings);
 });
-
-
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
