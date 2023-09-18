@@ -57,42 +57,22 @@ const Searchbar = () => {
       });
   };
 
-
   //trigger useEffect whenever itemsData state changes by including it as dependency
   useEffect(() => {}, [itemsData]);
 
- 
-    return (
-        <>
-        <Navigation />
-        <br/>
-        <select value={selectedItem} onChange={handleItemChange}>
-          <option value="">Select an item</option>
-            {items.map((item, index) => (
-          <option key={index} value={item}>{item}</option>))}
-        </select>
-        <select value={selectedCity} onChange={handleCityChange}>
-          <option value="">Select a city</option>
-            {cities.map((city, index) => (
-          <option key={index} value={city}> {city} </option>))}
-        </select>
-        <button onClick={handleSearch}>Search</button>
-
-        {/* Display itemsData on stateChange */}
-        {/* Supposed to need a key when you are mappping a component in your component file. 
-        For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
-        {itemsData.map((item, index) => (
-            <div className="item-box">
-                {/* update what we want to show here exactly is it the photo? */}
-                <h2>{item.name}</h2>
-                <img src ={item.picture} alt= 'loading pic'></img>
-                <p>description: {item.description}</p>
-                <p>price: ${item.price}</p>
-            </div>
-
+  return (
+    <div className="searchbody">
+      <Navigation />
+      <br />
+      <select className="option" value={selectedItem} onChange={handleItemChange}>
+        <option value="">Select an item</option>
+        {items.map((item, index) => (
+          <option key={index} value={item}>
+            {item}
+          </option>
         ))}
       </select>
-      <select value={selectedCity} onChange={handleCityChange}>
+      <select className="option" value={selectedCity} onChange={handleCityChange}>
         <option value="">Select a city</option>
         {cities.map((city, index) => (
           <option key={index} value={city}>
@@ -102,65 +82,25 @@ const Searchbar = () => {
         ))}
       </select>
       <button onClick={handleSearch}>Search</button>
-
-      {/* Display itemsData on stateChange */}
-      {/* Supposed to need a key when you are mappping a component in your component file.
-        For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
-      {itemsData.map((item, index) => (
-        <div className="item-box">
-          {/* update what we want to show here exactly is it the photo? */}
-          <h2>{item.name}</h2>
-          <Link to="/details">
-            <img
-              src={item.picture}
-              alt="loading pic"
-              onClick={() => handleDetails(item)}
-            ></img>
-          </Link>
-          <p hidden> {item.description}</p>
-          <p hidden> {item.city}</p>
-          <p>{item.price}</p>
-        </div>
-      ))}
-    </>
+      <div className="items">
+        {/* Display itemsData on stateChange */}
+        {/* Supposed to need a key when you are mappping a component in your component file.
+          For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
+        {itemsData.map((item, index) => (
+          <div className="item-box">
+            {/* update what we want to show here exactly is it the photo? */}
+            <h2>{item.name}</h2> <br />
+            <Link to="/details">
+            <img className = 'picturesize' src={item.picture} alt="loading pic" onClick={() => handleDetails(item)}></img>
+            </Link>
+            <br />
+            <p>description: {item.description}</p> <br />
+            <p>price: {item.price}</p> 
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
 export default Searchbar;
-
-
-//get fetch request on some endpoint that grabs mongodb (backend)
-//json data
-//[array of categories]
-//[array of cities]
-// const [item, setItem] = useState([])
-// const [city, setCity] = useState([])
-// const [click, setClick] = useState(true)
-// useEffect(() => {
-// fetch('http://localhost:3000/items')
-//   .then(data => data.json())
-//   .then(data => {
-//     setItem(data.item)}, [click])
-//   });
-// const handleClick = (e) => {
-//     if (e.target.value === 'navigation') {
-//         click === true ? setClick(false) : setClick(true)
-//     }
-// }
-{
-  /* <select value={selectedItem} onChange={handleItemChange}>
-            </select> */
-}
-{
-  /* <select onChange = {handleClick}>
-            <option value = 'navigation'>Navigation</option>
-            {item && item.map(item => {
-                <options value ={item}>{item}</options>})}
-             </select>
-             <select onChange = {handleClick}>
-            {city && item.map(city => {
-                <options value ={city}>{city}</options>})}
-                 </select>
-            <input type="text" placeholder='Choose a item'></input>
-                        <input type="text" placeholder='Choose a city'></input> */
-}
