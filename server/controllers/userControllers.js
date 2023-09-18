@@ -4,10 +4,10 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 
 const cloudinary = require('cloudinary').v2;
-cloudinary.config({ 
-  cloud_name: 'dlxfkrk48', 
-  api_key: '374659647111771', 
-  api_secret: 'd_3n7CUCzkxNfibszUer0UrxR2Y', 
+cloudinary.config({
+  cloud_name: 'dlxfkrk48',
+  api_key: '374659647111771',
+  api_secret: 'd_3n7CUCzkxNfibszUer0UrxR2Y',
   secure: true
 });
 
@@ -35,6 +35,7 @@ userController.login = (req, res, next) => {
           .compare(password, res.locals.user.password)
           .then(result => {
             if (result) res.locals.success = true;
+            console.log('locals success', res.locals.success)
             return next();
           })
           .catch(err => {
@@ -143,7 +144,7 @@ itemController.uploadImage = (req, res, next) => {
   console.log(req.body);
   const { title, desc, image } = req.body;
 
-  
+
   console.log(title, desc);
   console.log(image);
 
@@ -151,7 +152,7 @@ itemController.uploadImage = (req, res, next) => {
 
   // const uploadImage = async (imagePath) => {
 
-  //   // Use the uploaded file's name as the asset's public ID and 
+  //   // Use the uploaded file's name as the asset's public ID and
   //   // allow overwriting the asset with new versions
   //   const options = {
   //     use_filename: true,
@@ -167,20 +168,20 @@ itemController.uploadImage = (req, res, next) => {
   //   } catch (error) {
   //     console.error(error);
   //   }
-  
+
   // };
 
   // uploadImage(image)
   //   .then(response => {
   //     return next()
   //   });
-  
+
 
 };
 
 userController.getListings = async (req,res,next) => {
-  let username;
-  username = readfile(username)
+  const {username, password} = req.body;
+
   try {
     const listingInfo = await User.findOne({username}).populate('items')
     res.locals.listing = listingInfo;

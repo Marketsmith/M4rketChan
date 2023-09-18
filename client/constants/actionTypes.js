@@ -8,3 +8,4 @@ export const CLOUDINARY_CONSTS = {
   api_secret: "d_3n7CUCzkxNfibszUer0UrxR2Y",
   upload_preset: "j0ez2cmn"
 }
+

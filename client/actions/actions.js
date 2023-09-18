@@ -1,6 +1,6 @@
-import * as types from '../constants/actionTypes';
+// import * as types from '../constants/actionTypes';
 
-// export const sellButtonActionCreator = totalSellPosts => ({
-//     type: types.SELL_BUTTON,
-//     payload: totalSellPosts
-// });
+export const LOGINActionCreator = data => ({
+    type: types.LOGIN_INFO,
+    payload: [data.username, data.password]
+});

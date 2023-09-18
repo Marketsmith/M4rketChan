@@ -16,38 +16,38 @@ module.exports = {
         loader: "babel-loader",
         options: {
           presets: ["@babel/preset-env", "@babel/preset-react"],
-        }
+        },
       },
       {
         test: /.(css|scss)$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
 
   plugins: [
     new HTMLWebpackPlugin({
-      title: 'Development',
-      template: './client/index.html',
-    })
+      title: "Development",
+      template: "./client/index.html",
+    }),
   ],
 
   devServer: {
-    host: 'localhost',
+    host: "localhost",
     port: 8080,
     open: true,
     hot: true,
     liveReload: true,
     static: {
       publicPath: "/public",
-      directory: path.resolve(__dirname, 'public')
+      directory: path.resolve(__dirname, "public"),
     },
     proxy: {
-      '/': 'http://localhost:3000'
+      "/": "http://localhost:3000",
+      "/api": "http://localhost:3000",
     },
   },
   resolve: {
     extensions: [".js", ".jsx", ".json"],
   },
-
 };

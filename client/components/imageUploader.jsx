@@ -25,7 +25,7 @@ const imageUploader = () => {
       })
       .then(data => {
         fetch('/upload', {
-          
+
         })
       })
       .catch(err => console.log(err))
@@ -51,17 +51,17 @@ const imageUploader = () => {
 export default imageUploader;
 
 
-  
+
   // const image = cloudinary.createUploadWidget({
-  //   cloudName: CLOUDINARY_CONSTS.cloud_name, 
-  //   uploadPreset: CLOUDINARY_CONSTS.upload_preset}, (error, result) => { 
-  //     if (!error && result && result.event === "success") { 
-  //       console.log('Done! Here is the image info: ', result.info); 
+  //   cloudName: CLOUDINARY_CONSTS.cloud_name,
+  //   uploadPreset: CLOUDINARY_CONSTS.upload_preset}, (error, result) => {
+  //     if (!error && result && result.event === "success") {
+  //       console.log('Done! Here is the image info: ', result.info);
   //     }
   //   }
   // )
 
-  
+
 
 
 
@@ -72,7 +72,7 @@ export default imageUploader;
   //   <h1>To Upload Image on mongoDB</h1>
   //     <hr />
   //     <div>
-  //       <form action="/upload" method="POST" > 
+  //       <form action="/upload" method="POST" >
   //         <div>
   //           <label htmlFor="name">Image Title</label>
   //           <input
@@ -112,7 +112,7 @@ export default imageUploader;
   //     cloudName: cloud_name,
   //     uploadPreset: upload_preset,
   //     cropping: true,
-  //     multiple: false, 
+  //     multiple: false,
   //     context: {alt: "user_uploaded"},
   //     clientAllowedFormats: ["images"],
   //     maxImageWidth: 2000,
@@ -133,19 +133,20 @@ export default imageUploader;
 
   //     <button onClick={() => {
   //         cloudinary.v2.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
-  //         { public_id: "olympic_flag" }, 
+  //         { public_id: "olympic_flag" },
   //         function(error, result) {console.log(result); });
   //     }}
-  //       id="upload_widget" 
+  //       id="upload_widget"
   //       className="cloudinary-button">
   //         Upload files
   //     </button>
 
-  //     <img  
-  //       id="uploadedimage" 
+  //     <img
+  //       id="uploadedimage"
   //       src="">
-  //     </img> 
+  //     </img>
 
 
   //   </>
   // );
+
