@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
+import { useState } from "react";
 
 const imageUploader = () => {
-
-  return (
-    <>
-    <h1>To Upload Image on mongoDB</h1>
+    return (
+      <>
+      <h1>To Upload Image on mongoDB</h1>
       <hr />
       <div>
         <form action="/upload" method="POST" encType="multipart/form-data">
@@ -40,8 +40,6 @@ const imageUploader = () => {
       </div>
     </>
   );
-
-
 };
 
 export default imageUploader;

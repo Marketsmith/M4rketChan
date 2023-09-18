@@ -27,6 +27,7 @@ userController.login = (req, res, next) => {
           .compare(password, res.locals.user.password)
           .then(result => {
             if (result) res.locals.success = true;
+            console.log('locals success', res.locals.success)
             return next();
           })
           .catch(err => {
@@ -132,14 +133,15 @@ itemController.createItemListing = (req, res, next) => {
 
 
 itemController.uploadImage = (req, res, next) => {
-  const { title, desc, image } = req.body;
-
+  const { picture } = req.body;
   
+
+
 };
 
 userController.getListings = async (req,res,next) => {
-  let username;
-  username = readfile(username)
+  const {username, password} = req.body;
+
   try {
     const listingInfo = await User.findOne({username}).populate('items')
     res.locals.listing = listingInfo;
