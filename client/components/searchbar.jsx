@@ -79,10 +79,10 @@ const handleItemChange = (event) => {
         {itemsData.map((item, index) => (
             <div className="item-box">
                 {/* update what we want to show here exactly is it the photo? */}
-                <img src ={item.picture} alt= 'loading pic'></img>
                 <h2>{item.name}</h2>
-                <p>{item.description}</p>
-                <p>{item.price}</p>
+                <img src ={item.picture} alt= 'loading pic'></img>
+                <p>description: {item.description}</p>
+                <p>price: {item.price}</p>
             </div>
         ))}
         </>
