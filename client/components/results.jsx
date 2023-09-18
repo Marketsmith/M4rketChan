@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from './navigation'
-import Searchbar from './searchbar'
+
 
 const Results = () => {
 
@@ -9,6 +9,9 @@ const Results = () => {
         <>
 
         <Navigation/>
+        {/* <Link to='/results'>
+    <button type='button'> Search </button>
+</Link> */}
         <Searchbar/>
 
 

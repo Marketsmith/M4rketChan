@@ -7,25 +7,18 @@ import Searchbar from './searchbar.jsx'
 import Navigation from './navigation';
 
 
-
-
-// const Container = styled.div `display: flex; flex-direction: row;`
-
+//not sure if we need a results page as i can try to rerender the search page within searchbar 
+//within componenet in order to display results upon the search button click
 
 const Search = () => {
 
    return (
         <>
        <Navigation/>
-       {/* <Container> */}
-         <Link to='/results'>
-            <button type='button'> Search </button>
-      </Link>
-        {/* </Container> */}
-
-
+       <Link to='/results'>
+    <button type='button'> Search </button>
+</Link>
        <Searchbar/>
-
         </>
    );
 };

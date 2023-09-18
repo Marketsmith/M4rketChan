@@ -1,11 +1,15 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const { userController, itemController } = require('./controllers/userControllers.js');
 const { searchBarController } = require('./controllers/searchBarControllers.js')
 
 const app = express();
 
 const PORT = 3000;
+
+// Enable CORS for all routes to make sure we don't get cross server errors
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,8 +33,8 @@ app.post('/signup', userController.signUp, (req, res) => {
   else return res.status(200).json({});
 });
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
-app.get('/itemsByCity', searchBarController.populate, (req, res) => {
-
+app.post('/itemsByCity', searchBarController.populate, (req, res) => {
+  return res.status(200).json(res.locals);
 });
 
 app.post('/upload', itemController.uploadImage, (req, res) => {
