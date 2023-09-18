@@ -20,8 +20,6 @@ import Navigation from './navigation'
         <Navigation />
       <h3>Post an item for sale</h3>
       <form method='POST' action='/sellItem'>
-        <br/>
-        <br/>
         <input
           name='name'
           type='text'
