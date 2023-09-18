@@ -1,6 +1,6 @@
 export const SELL_BUTTON = "SELL_BUTTON";
 
-export const BUY_BUTTON = "BUY_BUTTON";
+export const DETAILS = "DETAILS";
 
 export const CLOUDINARY_CONSTS = {
   api_key: "374659647111771",
