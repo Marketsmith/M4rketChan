@@ -61,10 +61,10 @@ const Searchbar = () => {
   useEffect(() => {}, [itemsData]);
 
   return (
-    <>
+    <div className="searchbody">
       <Navigation />
       <br />
-      <select value={selectedItem} onChange={handleItemChange}>
+      <select className="option" value={selectedItem} onChange={handleItemChange}>
         <option value="">Select an item</option>
         {items.map((item, index) => (
           <option key={index} value={item}>
@@ -72,7 +72,7 @@ const Searchbar = () => {
           </option>
         ))}
       </select>
-      <select value={selectedCity} onChange={handleCityChange}>
+      <select className="option" value={selectedCity} onChange={handleCityChange}>
         <option value="">Select a city</option>
         {cities.map((city, index) => (
           <option key={index} value={city}>
@@ -82,22 +82,24 @@ const Searchbar = () => {
         ))}
       </select>
       <button onClick={handleSearch}>Search</button>
-
-      {/* Display itemsData on stateChange */}
-      {/* Supposed to need a key when you are mappping a component in your component file.
-        For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
-      {itemsData.map((item, index) => (
-        <div className="item-box">
-          {/* update what we want to show here exactly is it the photo? */}
-          <h2>{item.name}</h2>
-          <Link to="/details">
-          <img src={item.picture} alt="loading pic" onClick={() => handleDetails(item)}></img>
-          </Link>
-          <p>description: {item.description}</p>
-          <p>price: {item.price}</p>
-        </div>
-      ))}
-    </>
+      <div className="items">
+        {/* Display itemsData on stateChange */}
+        {/* Supposed to need a key when you are mappping a component in your component file.
+          For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
+        {itemsData.map((item, index) => (
+          <div className="item-box">
+            {/* update what we want to show here exactly is it the photo? */}
+            <h2>{item.name}</h2> <br />
+            <Link to="/details">
+            <img className = 'picturesize' src={item.picture} alt="loading pic" onClick={() => handleDetails(item)}></img>
+            </Link>
+            <br />
+            <p>description: {item.description}</p> <br />
+            <p>price: {item.price}</p> 
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
