@@ -4,23 +4,13 @@ import React, { useState } from "react";
 import Navigation from "./navigation";
 
 const CreateSellPosting = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedCity, setSelectedCity] = useState("")
 
   return (
     <div>
       <Navigation />
       <h3>Post an item for sale</h3>
-
-      <form method='POST' action='/sellItem'>
-        <input
-          name='name'
-          type='text'
-          placeholder='item name'
-        ></input>
-         <br/>
-         <br/>
 
       <form method="POST" action="/sellItem">
         <br />
@@ -70,7 +60,7 @@ const CreateSellPosting = () => {
         <span>Upload a photo of the item</span>
         <br />
         <br />
-        <input type="file" id="myFile" name="picture" onChange={handleChange} />
+        <input type="file" id="myFile" name="picture"/>
 
         <br />
         <input type="submit" name="_method" value="Post the item for sale" />

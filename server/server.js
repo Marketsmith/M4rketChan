@@ -10,12 +10,7 @@ const {
 const { sessionController } = require("./controllers/sessionController");
 const expressPino = require("express-pino-logger");
 const cookieParser = require("cookie-parser");
-
-const express = require('express');
-const path = require('path');
 const cors = require('cors');
-const { userController, itemController } = require('./controllers/userControllers.js');
-const { searchBarController } = require('./controllers/searchBarControllers.js')
 
 
 const app = express();
