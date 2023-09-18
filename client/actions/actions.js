@@ -1,6 +1,6 @@
-// import * as types from '../constants/actionTypes';
+import {DETAILS} from '../constants/actionTypes';
 
-export const LOGINActionCreator = data => ({
-    type: types.LOGIN_INFO,
-    payload: [data.username, data.password]
+export const DetailsActionCreator = (data) => ({
+  type: DETAILS,
+  payload: data,
 });
