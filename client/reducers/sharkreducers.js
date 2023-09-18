@@ -1,28 +1,26 @@
-// import * as actions from '../actions/actions.js';
+import { DETAILS } from "../constants/actionTypes";
 
+const initialState = {
+  details: [],
+};
 
-// const initialState = {
-//     username: '',
-//     password: ''
-// }
+const sharkreducers = (state = initialState, action) => {
+  switch (action.type) {
+    case DETAILS: {
+      const { name, picture, description, city, price, date} = action.payload;
+      const newDetails = [...state.details];
+      newDetails.push(name, picture, description, city, price, date);
+      console.log("this is reducer details", newDetails);
 
+      return {
+        ...state,
+        details: newDetails,
+      };
+    }
 
+    default:
+      return state;
+  }
+};
 
-// const sharkreducers = (state = initialState, action) => {
-
-//   switch (action.type) {
-
-//       case LOGIN_INFO:{
-//       return {
-//         ...state,
-//         username: action.payload[0],
-//         password: action.payload[1]
-//       }
-//     }
-
-//     default:
-//       return state;
-//   }
-// };
-
-// export default sharkreducers;
+export default sharkreducers;
