@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-const MONGO_URI = "mongodb+srv://connorkeyes:D36U8CGSL5maEh9h@cluster0.volzs1e.mongodb.net/?retryWrites=true&w=majority";
+const MONGO_URI =
+"mongodb+srv://gmogi92:basketball123@cluster0.jtsrl7y.mongodb.net/";
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 const Schema = mongoose.Schema;
 
@@ -16,27 +18,26 @@ const itemSchema = new Schema({
   category: { type: String, required: true },
   address: { type: String },
   picture: { type: String },
-  price: { type: Number }
+  price: { type: Number },
 });
-
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   email: { type: String },
-  items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }]
+  items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
 });
 
 const SALT_WORK_FACTOR = 10;
 const bcrypt = require('bcryptjs');
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
     if (err) return next(err);
     this.password = hash;
     return next();
-  })
-})
+  });
+});
 
 const Item = mongoose.model('Item', itemSchema);
 const User = mongoose.model('User', userSchema);
@@ -44,9 +45,7 @@ const User = mongoose.model('User', userSchema);
 const cities = ['Los Angeles', 'Seattle'];
 const categories = ['furniture', 'electronics'];
 
-
-
 module.exports = {
   Item,
-  User
-}
+  User,
+};
