@@ -1,0 +1,24 @@
+.searchbody > .navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #e1e1e1;
+  position: sticky;
+  top: 0;
+  background-color: #f8f8f8;
+  z-index: 100;
+}
+
+.option {
+  margin: 10px;
+  display: inline-block;
+}
+
+button {
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}

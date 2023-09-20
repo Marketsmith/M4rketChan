@@ -1,0 +1,30 @@
+.homebuttons {
+  background-color: rgb(10, 145, 55);
+  color: white;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 300%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+  margin-bottom: 15%;
+}
+
+.homebuttons:hover {
+  background-color: rgb(7, 128, 48);
+}
+
+.homebody {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.homebody > div > h2,
+.homebody > div > h3 {
+  text-align: center;
+  margin-top: 20px;
+}
