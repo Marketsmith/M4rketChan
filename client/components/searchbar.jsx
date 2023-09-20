@@ -4,14 +4,9 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Navigation from "./navigation";
 import { DetailsActionCreator } from "../actions/actions.js";
-
-//styles
 import './styles.css'
-import { createContext } from "react";
-// import itemCard
 import ItemCard from "./itemCard";
-// Context
-export const itemCartContext = createContext();
+
 
 const Searchbar = () => {
   const dispatch = useDispatch();
@@ -70,7 +65,6 @@ const Searchbar = () => {
   useEffect(() => {}, [itemsData]);
 
   return (
-    <itemCartContext.Provider value = {itemsData}>
     <div className="searchbody">
       <Navigation />
       <br />
@@ -92,29 +86,14 @@ const Searchbar = () => {
         ))}
       </select>
       <button onClick={handleSearch}>Search</button>
-      {/* <div className="items"> */}
-        {/* Display itemsData on stateChange */}
-        {/* Supposed to need a key when you are mappping a component in your component file.
-          For example, if i were to map the nav bar within this map function i would need a unique key that i could set to its index */}
-        {/* {itemsData.map((item, index) => ( */}
+        {itemsData.map((item) => (
           <div className="item-box">
-            <ItemCard/>
-            {/* update what we want to show here exactly is it the photo? */}
-            {/* <ItemCard picture = {item.picture} description ={item.description} name ={item.name}>
-            </ItemCard> */}
-            {/* <h2>{item.name}</h2> <br />
-            <Link to="/details">
-            <img className = 'picturesize' src={item.picture} alt="loading pic" onClick={() => handleDetails(item)}></img>
-            </Link>
-            <br />
-            <p>description: {item.description}</p> <br />
-            <p>price: {item.price}</p>  */}
+            <ItemCard picture = {item.picture} description ={item.description} name ={item.name} price = {item.price}>
+            </ItemCard>
           </div>
-        {/* ))} */}
+        ))} 
       </div>
-      
-    {/* </div> */}
-    </itemCartContext.Provider>
+    
   );
 };
 
