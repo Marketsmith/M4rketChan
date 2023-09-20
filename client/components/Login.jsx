@@ -1,59 +1,39 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // const handleSubmitSignUp = (e) => {
-  //   e.preventDefault();
-  //   const { username, password } = e.target;
-
-  //   if (!username.value.trim() || !password.value.trim()) {
-  //     setErrorMessage('Username and Password are required.');
-  //   }
-  //   fetch("/signup", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       username: username.value,
-  //       password: password.value,
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((data) => data.json())
-  //     .then((data) => {
-  //       if (data) {
-  //         navigate("../home");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'username') {
+      setUsername(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    const { username, password } = e.target;
-
-    fetch("/login", {
-      method: "POST",
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
       body: JSON.stringify({
-        username: username.value,
-        password: password.value,
+        username,
+        password,
       }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
       .then((data) => data.json())
       .then((data) => {
         if (data) {
-          navigate("./home");
+          navigate('./home');
         } else {
-          setErrorMessage("Invalid username/password. Try again!");
+          setErrorMessage('Invalid username/password. Try again!');
         }
       })
       .catch((err) => console.log(err));
@@ -63,35 +43,45 @@ const Login = () => {
     <div className='loginpage'>
       <div className='loginbox'>
         <div>
-          <h3 className="loginHeader">Welcome to the Goblin Market</h3>
-          <div id="errormsg">{errorMessage}</div>
+          <h3 className='loginHeader'>Welcome to the Goblin Market</h3>
+          <div id='errormsg'>{errorMessage}</div>
           <form onSubmit={handleSubmitLogin}>
             <input
-              id="username"
-              name="username"
-              type="text"
-              placeholder="username"
-            ></input>{" "}
+              id='username'
+              name='username'
+              type='text'
+              placeholder='username'
+              required
+              onChange={handleInputChange}
+              value={username}
+            ></input>{' '}
             <br />
             <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="password"
-            ></input>{" "}
+              id='password'
+              name='password'
+              type='password'
+              placeholder='password'
+              required
+              onChange={handleInputChange}
+              value={password}
+            ></input>{' '}
             <br />
-            <button className="loginButton" type="submit" value="log in">
+            <button className='loginButton' type='submit' value='log in'>
               Log In
-            </button>{" "}
+            </button>{' '}
             <br />
           </form>
-          <h3 id="loginOr">
-          </h3>
+          <h3 id='loginOr'></h3>
           <div />
-          <h3 className="loginHeader">Sign Up</h3>
-          <button className="loginButton" type="submit" value="sign up" onClick={() => navigate('/signup-page')}>
+          <h3 className='loginHeader'>Sign Up</h3>
+          <button
+            className='loginButton'
+            type='submit'
+            value='sign up'
+            onClick={() => navigate('/signup-page')}
+          >
             Sign Up
-          </button>{" "}
+          </button>{' '}
         </div>
       </div>
     </div>
