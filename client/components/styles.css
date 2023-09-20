@@ -1,0 +1,6 @@
+.item-box{
+  display: grid;
+  grid-template-columns: repeat(1, minmax(345px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 40px;
+}

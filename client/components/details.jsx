@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Navigation from "./navigation";
 
+
+
 const Details = () => {
   const details = useSelector((state) => state.user.details);
   console.log("this is details selector", details);
@@ -45,6 +47,7 @@ const Details = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };
