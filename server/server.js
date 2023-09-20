@@ -38,9 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 
-app.get("*", (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
-});
+
 
 //route for posting an item for sale, runs middleware then currently redirects to /search page
 app.post("/sellItem", itemController.createItemListing, (req, res) => {
@@ -53,13 +51,17 @@ app.post("/login", userController.login, (req, res) => {
   else return res.status(200).json({});
 });
 
-app.post("/login", userController.login, (req, res) => {
-  return res.status(200).json(res.locals.user);
-});
+// app.post("/login", userController.login, (req, res) => {
+//   return res.status(200).json(res.locals.user);
+// });
+
+// app.post("/signup", userController.signUp, (req, res) => {
+//   if (res.locals.success) return res.status(200).json(res.locals.user);
+//   else return res.status(200).json({});
+// });
 
 app.post("/signup", userController.signUp, (req, res) => {
-  if (res.locals.success) return res.status(200).json(res.locals.user);
-  else return res.status(200).json({});
+  return res.status(200).json(res.locals.user);
 });
 
 
@@ -81,6 +83,10 @@ app.get('/listings', sessionController.isLoggedIn, userController.getListings, (
   return res.status(200).json(res.locals.listings)
 })
 
+app.get('/getUsers', userController.getUsers, (req, res) => {
+  return res.status(200).json(res.locals.users);
+})
+
 
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
 
@@ -100,9 +106,13 @@ app.post("/upload", itemController.uploadImage, (req, res) => {
   return res.status(200).json({});
 });
 
-app.get("/listings", userController.getListings, (req, res) => {
-  return res.status(200).json(res.locals.listings);
+app.get("*", (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
+
+// app.get("/listings", userController.getListings, (req, res) => {
+//   return res.status(200).json(res.locals.listings);
+// });
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
