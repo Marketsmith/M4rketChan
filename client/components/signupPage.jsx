@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SignupPage.css';
+import '../components/Styles/SignupPage.css';
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const SignupPage = () => {
           'Content-Type': 'application/json',
         },
       })
-        .then((data) => navigate('../'))
+        .then((data) => navigate('./login-page'))
         // .then((data) => data.json())
         // .then((data) => {
         //     console.log('out of the if statement');

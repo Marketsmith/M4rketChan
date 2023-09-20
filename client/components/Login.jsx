@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Styles/Login.css';
+import '../components/Styles/Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Login = () => {
       .then((data) => data.json())
       .then((data) => {
         if (data) {
-          navigate('./home');
+          navigate('../');
         } else {
           setErrorMessage('Invalid username/password. Try again!');
         }

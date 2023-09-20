@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import Navigation from './navigation';
 import { DetailsActionCreator } from '../actions/actions.js';
 import ItemCard from './itemCard';
-import './SearchBar.css';
+import '../components/Styles/SearchBar.css';
 
 const Searchbar = () => {
   const dispatch = useDispatch();

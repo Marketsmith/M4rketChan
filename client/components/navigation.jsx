@@ -13,19 +13,21 @@ const Navigation = () => {
 
   return (
     <div className='navbar'>
-      <Link to='/' className='nav-logo'>
-        MyShop
-      </Link>
       <select className='nav-dropdown' onChange={handleClick}>
         <option value='navigation'>Navigate</option>
-        <option value='/search-bar'>Search</option>
+        <option value='/'>Home Page</option>
         <option value='/sell-item'>Sell</option>
       </select>
-      <Link to='/login' className='nav-link'>
-        Login
-      </Link>
+
+      <div className='action-buttons'>
+        <Link to='/sellItem' className='nav-sell'>
+          Sell
+        </Link>
+        <Link to='/login-page' className='nav-login'>
+          Login
+        </Link>
+      </div>
     </div>
   );
 };
-
 export default Navigation;

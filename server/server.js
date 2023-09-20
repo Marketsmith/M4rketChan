@@ -92,6 +92,10 @@ app.post('/itemsByCity', searchBarController.populate, (req, res) => {
   return res.status(200).json(res.locals);
 });
 
+app.get('/getItems', searchBarController.allItems, (req, res) => {
+  return res.status(200).json(res.locals.items);
+});
+
 app.post('/upload', itemController.uploadImage, (req, res) => {
   return res.status(200).json({});
 });

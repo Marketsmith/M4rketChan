@@ -13,7 +13,7 @@ select {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #333;
+  background-color: #755af1;
 }
 
 .nav-logo {
@@ -29,6 +29,17 @@ select {
 }
 
 .nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.action-buttons {
+  display: flex;
+}
+
+.nav-login,
+.nav-sell {
   color: #fff;
   text-decoration: none;
   margin-left: 1rem;

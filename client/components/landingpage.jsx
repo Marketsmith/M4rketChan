@@ -1,36 +1,40 @@
-import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { useNavigate } from 'react-router';
-import { CLOUDINARY_CONSTS } from '../constants/actionTypes';
+import React, { useState, useEffect } from 'react';
 import Searchbar from './searchbar';
-import './HomePage.css';
+import '../components/Styles/HomePage.css';
 
 const HomePage = ({ isLoggedIn }) => {
-  //const navigate = useNavigate();
-  // if(!isLoggedIn) {
-  //   navigate ('/signup')
+  const [items, setItems] = useState([]);
 
-  // }
+  useEffect(() => {
+    function fetchItems() {
+      return fetch('http://localhost:3000/getItems')
+        .then((data) => {
+          console.log('this is the data: ', data);
+          return data.json();
+        })
+        .then((data) => {
+          setItems(data);
+        })
+        .catch((err) => {
+          console.error('Fetching items failed: ', err);
+        });
+    }
+    fetchItems();
+  }, []);
 
   return (
     <div className='homebody'>
-      <div>
-        <h2>Market</h2>
-      </div>
-      {/* <div>
-        <h3>Buy or sell goods in your city</h3>
-      </div> */}
-      <div>
-        <Link to='/sellItem' style={{ textDecoration: 'none' }}>
-          <button className='homebuttons' type='button'>
-            {' '}
-            Sell{' '}
-          </button>
-        </Link>
-        <br />
-        <br />
-      </div>
       <Searchbar />
+      {items.map((item) => (
+        <div className='item-box'>
+          <ItemCard
+            picture={item.picture}
+            description={item.description}
+            name={item.name}
+            price={item.price}
+          ></ItemCard>
+        </div>
+      ))}
     </div>
   );
 };
