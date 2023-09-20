@@ -13,6 +13,7 @@ import CreateSellPosting from './components/createsellpost'
 import Listings from './components/listings'
 import ImageUploader from './components/imageUploader';
 import Searchbar from './components/searchbar';
+import SignupPage from './components/signupPage';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<Login />} />
+        <Route path='signup-page' element={<SignupPage />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/results' element={<Results />} />
         <Route path='/favorites' element={<Favorites />} />
@@ -27,7 +29,7 @@ const App = () => {
         <Route path='/listings' element={<Listings />} />
         <Route path='/upload' element={<ImageUploader />} />
         <Route path='/searchBar' element={<Searchbar />} />
-          <Route path='/details' element={<Details />} />
+        <Route path='/details' element={<Details />} />
 
 
       </Routes>
