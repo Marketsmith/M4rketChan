@@ -1,6 +1,6 @@
 * {
-    align-items: center;
-    font-family: Courier New, monospace;
+  align-items: center;
+  font-family: Courier New, monospace;
 }
 
 .goblinLogin {
@@ -8,20 +8,20 @@
 }
 
 .homebuttons {
-    font-size: 300%;
-    background-color: rgb(10, 145, 55);
-    color: white;
-    border-radius: 20px;
-    display:flex;
-    flex-direction: row;
-    margin-top: 5%;
-    margin-bottom: 15%;
-    /* padding-left: 40%;
+  font-size: 300%;
+  background-color: rgb(10, 145, 55);
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+  margin-bottom: 15%;
+  /* padding-left: 40%;
     padding-right: 40%; */
-    padding-left: 12px;
-    padding-right: 12px;
-    box-shadow: 5px 5px 5px black;
-    
+  padding-left: 12px;
+  padding-right: 12px;
+  box-shadow: 5px 5px 5px black;
+
 }
 
 .picturesize {
@@ -59,16 +59,16 @@
 }
 
 .homebody {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
-    color: rgb(0, 0, 0);
-    max-width: 700px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  color: rgb(0, 0, 0);
+  max-width: 700px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
 }
 
 .sellbody {
@@ -138,61 +138,98 @@
 
 
 .sellItem {
-    display: flex;
-    align-self: flex-start;
+  display: flex;
+  align-self: flex-start;
 }
 
 
 .details {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 100vh;
 
 }
 
 .detailsbox {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 20px;
-    height: 500px;
-    width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  height: 500px;
+  width: 500px;
 }
 
 #reviews {
-    font-weight: bold;
-    font-size: 40px;
-    margin-bottom: 10%;
-    color: black;
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 10%;
+  color: black;
 }
 
 .reviewbox {
-   margin-left: 10px;
+  margin-left: 10px;
 }
 
 .loginpage {
-    display:flex;
-    direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
+  display: flex;
+  direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 
 .loginbox {
-    display:flex;
-    direction: row;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid;
-    width: 400px;
-    height: 500px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 20px;
+  display: flex;
+  direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  width: 400px;
+  height: 500px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+}
+
+#signup-page {
+  background: linear-gradient(to bottom, rgb(255, 190, 116) 0%, rgb(254, 252, 234) 30%);
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+#signup-form {
+  margin-top: 10px
+}
+
+#submit-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
