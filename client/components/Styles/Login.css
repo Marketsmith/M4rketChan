@@ -1,0 +1,23 @@
+.goblinLogin {
+  background-image: url('https://www.wargamer.com/wp-content/sites/wargamer/2022/11/dnd-goblin-5e-race-guide-goblin-face-close-up.jpg');
+}
+
+.loginpage {
+  display: flex;
+  direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.loginbox {
+  display: flex;
+  direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  width: 400px;
+  height: 500px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+}
