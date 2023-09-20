@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const MONGO_URI =
-"mongodb+srv://gmogi92:basketball123@cluster0.jtsrl7y.mongodb.net/";
+const MONGO_URI = 'mongodb+srv://gmogi92:basketball123@cluster0.jtsrl7y.mongodb.net/';
 
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -25,7 +24,6 @@ const itemSchema = new Schema({
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  // email: { type: String },
   items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
 });
 
