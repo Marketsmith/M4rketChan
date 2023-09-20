@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Searchbar from './searchbar';
 import '../components/Styles/HomePage.css';
+import ItemCard from './itemCard';
 
 const HomePage = ({ isLoggedIn }) => {
   const [items, setItems] = useState([]);
@@ -25,16 +26,18 @@ const HomePage = ({ isLoggedIn }) => {
   return (
     <div className='homebody'>
       <Searchbar />
-      {items.map((item) => (
-        <div className='item-box'>
-          <ItemCard
-            picture={item.picture}
-            description={item.description}
-            name={item.name}
-            price={item.price}
-          ></ItemCard>
-        </div>
-      ))}
+      <div className='item-container'>
+        {items.map((item) => (
+          <div className='item-box'>
+            <ItemCard
+              picture={item.picture}
+              description={item.description}
+              name={item.name}
+              price={item.price}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -6,38 +6,35 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import './styles.css'
-import { useNavigate } from "react-router-dom";
-
+import './styles.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function ItemCard(props) {
   const navigate = useNavigate();
 
   const messageRedirect = () => {
-    navigate('../details')
-  }
+    navigate('../details');
+  };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-    <CardMedia
-      sx={{ height: 200 }}
-      image={props.picture} 
-      title="item image"
-    />
-    <CardContent>
-    <Typography gutterBottom variant="h5" component="div">
-        {props.name}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {props.description}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        ${props.price}
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button size="small" onClick={() => messageRedirect()}>Messages</Button>
-    </CardActions>
-  </Card>
+    <Card sx={{ width: 345, margin: '0 auto' }}>
+      <CardMedia sx={{ height: 200 }} image={props.picture} title='item image' />
+      <CardContent>
+        <Typography gutterBottom variant='h5' component='div'>
+          {props.name}
+        </Typography>
+        <Typography variant='body2' color='text.secondary'>
+          {props.description}
+        </Typography>
+        <Typography variant='body2' color='text.secondary'>
+          ${props.price}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size='small' onClick={() => messageRedirect()}>
+          Messages
+        </Button>
+      </CardActions>
+    </Card>
   );
 }

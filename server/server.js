@@ -92,7 +92,7 @@ app.post('/itemsByCity', searchBarController.populate, (req, res) => {
   return res.status(200).json(res.locals);
 });
 
-app.get('/getItems', searchBarController.allItems, (req, res) => {
+app.get('/getItems', searchBarController.getItems, (req, res) => {
   return res.status(200).json(res.locals.items);
 });
 
