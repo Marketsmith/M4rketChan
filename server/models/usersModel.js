@@ -19,6 +19,7 @@ const itemSchema = new Schema({
   address: { type: String },
   picture: { type: String },
   price: { type: Number },
+  // message : {default : []}
 });
 
 const userSchema = new Schema({
