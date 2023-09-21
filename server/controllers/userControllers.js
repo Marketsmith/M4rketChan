@@ -104,6 +104,7 @@ userController.getUsers = async (req, res, next) => {
 
 itemController.createItemListing = async (req, res, next) => {
   const { user, name, date, description, category, city, picture, price } = req.body;
+  console.log('this is req.body: ', req.body);
   const newItem = {
     user,
     name,
@@ -115,7 +116,7 @@ itemController.createItemListing = async (req, res, next) => {
     price,
   };
   try {
-    await Item.create({ newItem });
+    await Item.create(newItem);
     return next();
   } catch (err) {
     console.error(err);
@@ -198,7 +199,7 @@ userController.buyItem = async (req, res, next) => {
             items: details,
           },
           $inc: {
-            xp: 50, 
+            xp: 50,
           },
         }
       );
@@ -229,17 +230,14 @@ userController.placeBid = async (req, res, next) => {
       await item.save();
       return next();
     }
-  }
-  catch {
+  } catch {
     return next({
       status: 400,
       log: 'Failed during placeBids',
-      message: 'Error during placeBid middleware.'
-    })
+      message: 'Error during placeBid middleware.',
+    });
   }
-}
-
-
+};
 
 module.exports = {
   userController,
