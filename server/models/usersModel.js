@@ -8,21 +8,8 @@ mongoose
 
 const Schema = mongoose.Schema;
 
-// const itemSchema = new Schema({
-//   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-//   name: { type: String, required: true },
-//   date: { type: String, default: Date.now() },
-//   description: { type: String, default: '' },
-//   city: { type: String, required: true },
-//   category: { type: String, required: true },
-//   address: { type: String },
-//   picture: { type: String },
-//   price: { type: Number },
-//   currentBid: { type: Number, default: 0 }
-// });
-
 const itemSchema = new Schema({
-  user: { type: String, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
   date: { type: String, default: Date.now() },
   description: { type: String, default: '' },
@@ -33,6 +20,19 @@ const itemSchema = new Schema({
   price: { type: Number },
   currentBid: { type: Number, default: 0 }
 });
+
+// const itemSchema = new Schema({
+//   user: { type: String, required: true },
+//   name: { type: String, required: true },
+//   date: { type: String, default: Date.now() },
+//   description: { type: String, default: '' },
+//   city: { type: String, required: true },
+//   category: { type: String, required: true },
+//   address: { type: String },
+//   picture: { type: String },
+//   price: { type: Number },
+//   currentBid: { type: Number, default: 0 }
+// });
 
 const bidSchema = new Schema({
   item: { type: String, required: true },

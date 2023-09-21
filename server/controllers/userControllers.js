@@ -259,6 +259,46 @@ bidController.createBid = async (req, res, next) => {
   }
 }
 
+bidController.findBid = async (req, res, next) => {
+  const { name } = req.params;
+  res.locals.data = {};
+
+  try {
+    const foundBid = await Bid.findOne({ item: name })
+    res.locals.data.bid = foundBid.currentBid;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during findBid',
+      message: 'Error during findBid middleware.'
+    });
+  }
+  // return next();
+}
+
+reviewController.findReview = async (req, res, next) => {
+  const { name } = req.params;
+
+  try {
+    const foundReview = await Review.findOne({ item: name })
+    const reviewArray = [];
+    foundReview.reviews.forEach((review) => {
+      reviewArray.push(review);
+    })
+    res.locals.data.review = reviewArray;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during findReview',
+      message: 'Error during findReview middleware.'
+    });
+  }
+}
+
 reviewController.createReviewPage = async (req, res, next) => {
   const { name } = req.body;
 
@@ -280,7 +320,11 @@ reviewController.addReview = async (req, res, next) => {
 
   try {
     const item = await Review.findOne({ item: itemName })
+    console.log('here is the item', item);
     item.reviews.push(message);
+    item.markModified('reviews', reviewController);
+    await item.save();
+    return next();
   }
   catch {
     return next({

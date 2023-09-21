@@ -94,3 +94,9 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
+
+#review-comment {
+  margin: 10px;
+  font-style: italic;
+
+}
