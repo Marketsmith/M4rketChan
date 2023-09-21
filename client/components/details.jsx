@@ -8,7 +8,7 @@ import useUserStore from '../zuStore';
 const Details = () => {
   const details = useSelector((state) => state.user.details);
   const [bidState, setBidState] = useState('');
-  //name, picture, description, city, price, date
+  const { zuUsername } = useUserStore();
 
   function submitBid() {
     fetch('http://localhost:3000/placeBid', {
@@ -40,13 +40,6 @@ const Details = () => {
       setBidState(value);
     }
   };
-  const { zuUsername } = useUserStore();
-
-  // check milestone 100 points 
-  // add item to user array
-  // increase xp 50 points 
-  // fetch POST to userController 
-  // getUser GET  
 
   const body = {
     username : zuUsername,
@@ -61,9 +54,10 @@ const Details = () => {
       },
       body: JSON.stringify(body)
     })
-    // if response is successful then update XP 
+    
     
   }
+
 
   return (
     <>
@@ -74,13 +68,13 @@ const Details = () => {
           <img className="picturesize" src={item.picture} alt="loading pic" />
           <div className="detailsDiv">
             <br />
-            <div>{details[0]}</div>
-            <div>Date posted: {details[5]}</div>
-            <div>Description: {details[2]} </div>
-            <div>City: {details[3]} </div>
+            <div>Name : {item.name}</div>
+            <div>Date posted: {item.date}</div>
+            <div>Description: {item.description} </div>
+            <div>City: {item.city} </div>
             <div id='buy-it-now'>
-              <div>Price: {details[4]} </div>
-              <button type="button"> Buy it now. </button>
+              <div>Price: {item.price} </div>
+              <button type="button" onClick={handleBuyButton}> Buy it now. </button>
             </div>
             <div>Highest Bid: Insert bid data here</div>
             <form onSubmit={submitBid}>
