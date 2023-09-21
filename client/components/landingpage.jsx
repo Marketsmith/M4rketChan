@@ -3,7 +3,6 @@ import Searchbar from './searchbar';
 import '../components/Styles/HomePage.css';
 import ItemCard from './itemCard';
 import Slideshow from './slideshow';
-import useUserStore from '../zuStore';
 
 const HomePage = () => {
   const [items, setItems] = useState([]);

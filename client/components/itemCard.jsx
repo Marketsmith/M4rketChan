@@ -33,7 +33,7 @@ export default function ItemCard(props) {
   };
 
   return (
-    <Card sx={{ minWidth: 345 }}>
+    <Card sx={{ minWidth: 345 }} className='fullSizeCard'>
       <CardMedia
         sx={{
           height: 100,
@@ -56,7 +56,7 @@ export default function ItemCard(props) {
       </CardContent>
       <CardActions>
         <Button size='small' onClick={messageRedirect}>
-          Messages
+          More Details
         </Button>
       </CardActions>
     </Card>

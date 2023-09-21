@@ -10,23 +10,35 @@ const Navigation = () => {
 
   const handleClick = (event) => {
     const selectedPage = event.target.value;
-    navigate(selectedPage); // navigate ('./search')
+    if (selectedPage === '/sellItem' || (selectedPage === '/myAccount' && !zuUsername)) {
+      navigate('/login-page');
+    } else {
+      navigate(selectedPage);
+    }
   };
 
   return (
     <div className='navbar'>
       <select className='nav-dropdown' onChange={handleClick}>
         <option value='navigation'>Navigate</option>
+        <option value='/myAccount'>My Account</option>
         <option value='/'>Home Page</option>
-        <option value='/sell-item'>Sell</option>
+        <option value='/sellItem'>Sell Item</option>
       </select>
 
       <div className='action-buttons'>
-        <Link to='/sellItem' className='nav-sell'>
-          Sell
-        </Link>
         {zuUsername ? (
-          <span className='nav-username'> Welcome,{zuUsername}</span>
+          <Link to='/sellItem' className='nav-sell'>
+            Sell
+          </Link>
+        ) : (
+          <Link to='/login-page' className='nav-login'>
+            Sell
+          </Link>
+        )}
+        ;
+        {zuUsername ? (
+          <span className='nav-username'> Welcome, {zuUsername}</span>
         ) : (
           <Link to='/login-page' className='nav-login'>
             Login

@@ -5,7 +5,10 @@ h3,
 h4,
 button,
 select {
-  font-family: 'Courier New', monospace;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
 .navbar {
@@ -13,35 +16,27 @@ select {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #755af1;
+  background-color: #24292e;
 }
 
-.nav-logo {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.nav-dropdown {
-  border: none;
-  padding: 0.5rem;
-}
-
-.nav-link {
-  color: #fff;
+.nav-logo,
+.nav-link,
+.nav-login,
+.nav-sell,
+.nav-username {
+  color: #ffffff;
   text-decoration: none;
   margin-left: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-login:hover,
+.nav-sell:hover,
+.nav-username:hover {
+  color: #9dacff;
 }
 
 .action-buttons {
   display: flex;
-}
-
-.nav-login,
-.nav-sell,
-.nav-username {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 1rem;
 }

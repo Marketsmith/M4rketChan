@@ -4,7 +4,6 @@ import '../components/Styles/Login.css';
 
 import useUserStore from '../zuStore';
 
-
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -49,11 +48,10 @@ const Login = () => {
   };
 
   return (
-   
     <div className='loginpage'>
       <div className='loginbox'>
         <div>
-          <h3 className='loginHeader'>Welcome to the Goblin Market</h3>
+          <h3 className='loginHeader'>Welcome to the Market</h3>
           <div id='errormsg'>{errorMessage}</div>
           <form onSubmit={handleSubmitLogin}>
             <input
@@ -83,7 +81,6 @@ const Login = () => {
           </form>
           <h3 id='loginOr'></h3>
           <div />
-          <h3 className='loginHeader'>Sign Up</h3>
           <button
             className='loginButton'
             type='submit'
@@ -95,7 +92,6 @@ const Login = () => {
         </div>
       </div>
     </div>
-    
   );
 };
 

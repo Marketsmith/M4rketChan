@@ -53,27 +53,28 @@ const Searchbar = ({ setItems }) => {
   };
 
   return (
-    <div className='searchbody'>
+    <>
       <Navigation />
-      <br />
-      <select className='categories' value={selectedItem} onChange={handleItemChange}>
-        <option value=''>Select a Category</option>
-        {categories.map((category, index) => (
-          <option key={index} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-      <select className='locations' value={selectedCity} onChange={handleCityChange}>
-        <option value=''>Select a city</option>
-        {cities.map((city, index) => (
-          <option key={index} value={city}>
-            {city}
-          </option>
-        ))}
-      </select>
-      <button onClick={handleSearch}>Search</button>
-    </div>
+      <div className='searchbody'>
+        <select className='categories' value={selectedItem} onChange={handleItemChange}>
+          <option value=''>Select a Category</option>
+          {categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+        <select className='locations' value={selectedCity} onChange={handleCityChange}>
+          <option value=''>Select a city</option>
+          {cities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
+        <button onClick={handleSearch}>Search</button>
+      </div>
+    </>
   );
 };
 
