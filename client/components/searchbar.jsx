@@ -73,16 +73,6 @@ const Searchbar = ({ setItems }) => {
         ))}
       </select>
       <button onClick={handleSearch}>Search</button>
-      {itemsData.map((item) => (
-        <div className='item-box'>
-          <ItemCard
-            picture={item.picture}
-            description={item.description}
-            name={item.name}
-            price={item.price}
-          ></ItemCard>
-        </div>
-      ))}
     </div>
   );
 };

@@ -104,6 +104,7 @@ userController.getUsers = async (req, res, next) => {
 
 itemController.createItemListing = async (req, res, next) => {
   const { user, name, date, description, category, city, picture, price } = req.body;
+  console.log('this is req.body: ', req.body);
   const newItem = {
     user,
     name,
@@ -115,7 +116,7 @@ itemController.createItemListing = async (req, res, next) => {
     price,
   };
   try {
-    await Item.create({ newItem });
+    await Item.create(newItem);
     return next();
   } catch (err) {
     console.error(err);
@@ -175,16 +176,15 @@ userController.getListings = async (req, res, next) => {
   }
 };
 
-
 userController.buyItem = async (req, res, next) => {
   const { username, details } = req.body;
 
   try {
     await User.updateOne(
-      { username: username }, 
+      { username: username },
       {
         $push: {
-          items: details, 
+          items: details,
         },
       }
     );
@@ -198,8 +198,6 @@ userController.buyItem = async (req, res, next) => {
     });
   }
 };
-
-
 
 module.exports = {
   userController,

@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 //route for posting an item for sale, runs middleware then currently redirects to /search page
 app.post('/sellItem', itemController.createItemListing, (req, res) => {
-  return res.redirect(303, '/searchBar');
+  return res.redirect(303, '/');
   // return res.status(303);
 });
 
@@ -78,10 +78,9 @@ app.get('/getUsers', userController.getUsers, (req, res) => {
   return res.status(200).json(res.locals.users);
 });
 
-
-app.post('/buyItem', userController.buyItem, (req,res) =>{
-  return res.status(200)
-})
+app.post('/buyItem', userController.buyItem, (req, res) => {
+  return res.status(200);
+});
 
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
 
