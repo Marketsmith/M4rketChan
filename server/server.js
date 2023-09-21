@@ -78,6 +78,11 @@ app.get('/getUsers', userController.getUsers, (req, res) => {
   return res.status(200).json(res.locals.users);
 });
 
+
+app.post('/buyItem', userController.buyItem, (req,res) =>{
+  return res.status(200)
+})
+
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
 
 // app.get('/itemsByCity', searchBarController.populate, (req, res) => {
