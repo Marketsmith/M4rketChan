@@ -178,9 +178,6 @@ userController.getListings = async (req, res, next) => {
 
 userController.buyItem = async (req, res, next) => {
   const { username, details } = req.body;
-  console.log('Received request with username:', username);
-  console.log('Received details:', details);
-  console.log('Request Body:', req.body);
 
   try {
     await User.updateOne(
@@ -191,7 +188,6 @@ userController.buyItem = async (req, res, next) => {
         },
       }
     );
-    console.log('Item added successfully.');
     return next();
   } catch (error) {
     console.error('Error adding item:', error);
