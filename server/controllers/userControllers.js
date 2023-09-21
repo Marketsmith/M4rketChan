@@ -175,19 +175,35 @@ userController.getListings = async (req, res, next) => {
   }
 };
 
-
 userController.buyItem = async (req, res, next) => {
   const { username, details } = req.body;
 
   try {
-    await User.updateOne(
-      { username: username }, 
-      {
-        $push: {
-          items: details, 
-        },
-      }
-    );
+    const user = await User.findOne({ username });
+    const currentXP = user.xp;
+
+    if (currentXP >= 100) {
+      await User.updateOne(
+        { username },
+        {
+          $set: { xp: 0 },
+          $inc: { level: 1 },
+        }
+      );
+    } else {
+      await User.updateOne(
+        { username: username },
+        {
+          $push: {
+            items: details,
+          },
+          $inc: {
+            xp: 50, 
+          },
+        }
+      );
+    }
+
     return next();
   } catch (error) {
     console.error('Error adding item:', error);
@@ -198,6 +214,7 @@ userController.buyItem = async (req, res, next) => {
     });
   }
 };
+
 
 
 
