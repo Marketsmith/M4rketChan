@@ -22,7 +22,7 @@ const itemSchema = new Schema({
 });
 
 // const itemSchema = new Schema({
-//   // user: { type: String, required: true },
+//   user: { type: String, required: true },
 //   name: { type: String, required: true },
 //   date: { type: String, default: Date.now() },
 //   description: { type: String, default: '' },
