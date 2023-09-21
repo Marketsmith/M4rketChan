@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { userController, itemController, bidController } = require('./controllers/userControllers.js');
+const { userController, itemController, bidController, reviewController } = require('./controllers/userControllers.js');
 const { searchBarController } = require('./controllers/searchBarControllers.js');
 const { sessionController } = require('./controllers/sessionController');
 const expressPino = require('express-pino-logger');
@@ -34,7 +34,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 //route for posting an item for sale, runs middleware then currently redirects to /search page
-app.post('/sellItem', itemController.createItemListing, bidController.createBid, (req, res) => {
+app.post('/sellItem', itemController.createItemListing, bidController.createBid, reviewController.createReviewPage, (req, res) => {
   return res.redirect(303, '/');
   // return res.status(303);
 });

@@ -1,6 +1,7 @@
 const { User } = require('../models/usersModel');
 const { Item } = require('../models/usersModel');
 const { Bid } = require('../models/usersModel');
+const { Review } = require('../models/usersModel');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
@@ -16,6 +17,7 @@ cloudinary.config({
 const itemController = {};
 const userController = {};
 const bidController = {};
+const reviewController = {};
 
 userController.login = async (req, res, next) => {
   const { username, password } = req.body;
@@ -257,10 +259,45 @@ bidController.createBid = async (req, res, next) => {
   }
 }
 
+reviewController.createReviewPage = async (req, res, next) => {
+  const { name } = req.body;
+
+  try {
+    const newReviewPage = await Review.create({ item: name })
+    return next();
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during createReviewPage',
+      message: 'Error during createReviewPage middleware.'
+    });
+  }
+}
+
+reviewController.addReview = async (req, res, next) => {
+  const { itemName, message } = req.body;
+
+  try {
+    const item = await Review.findOne({ item: itemName })
+    item.reviews.push(message);
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during addReview',
+      message: 'Error during addReview middleware.'
+    });
+  }
+}
+
+
+
 
 
 module.exports = {
   userController,
   itemController,
-  bidController
+  bidController,
+  reviewController
 };

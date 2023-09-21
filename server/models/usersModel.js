@@ -40,6 +40,11 @@ const bidSchema = new Schema({
   currentWinner: { type: String }
 })
 
+const reviewSchema = new Schema({
+  item: { type: String, required: true },
+  reviews: { type: Array, default: [] }
+})
+
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -69,6 +74,7 @@ userSchema.pre('save', function (next) {
 const Item = mongoose.model('Item', itemSchema);
 const User = mongoose.model('User', userSchema);
 const Bid = mongoose.model('Bid', bidSchema);
+const Review = mongoose.model('Review', reviewSchema)
 
 const cities = ['Los Angeles', 'Seattle'];
 const categories = ['furniture', 'electronics'];
@@ -76,5 +82,6 @@ const categories = ['furniture', 'electronics'];
 module.exports = {
   Item,
   User,
-  Bid
+  Bid,
+  Review
 };
