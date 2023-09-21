@@ -175,6 +175,30 @@ userController.getListings = async (req, res, next) => {
   }
 };
 
+userController.placeBid = async (req, res, next) => {
+  const { amount, itemName } = req.body;
+  try {
+    const item = await Item.findOne({ itemName });
+    if (amount > item.currentBid) {
+      item.currentBid = amount;
+      await item.save();
+      res.locals.success = true;
+      return next();
+    } else {
+      res.locals.success = false;
+      await item.save();
+      return next();
+    }
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during placeBids',
+      message: 'Error during placeBid middleware.'
+    })
+  }
+}
+
 module.exports = {
   userController,
   itemController,

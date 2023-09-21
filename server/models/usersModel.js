@@ -18,6 +18,7 @@ const itemSchema = new Schema({
   address: { type: String },
   picture: { type: String },
   price: { type: Number },
+  currentBid: { type: Number, default: 0 }
   // message : {default : []}
 });
 
