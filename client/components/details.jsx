@@ -15,7 +15,7 @@ const Details = () => {
       method: 'POST',
       body: JSON.stringify({
         amount: bidState,
-        itemName: 'Insert Item Name Here'
+        itemName: details.name
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -54,6 +54,7 @@ const Details = () => {
       },
       body: JSON.stringify(body)
     })
+    console.log(details)
     
     
   }
