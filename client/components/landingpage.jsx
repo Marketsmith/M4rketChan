@@ -3,7 +3,7 @@ import Searchbar from './searchbar';
 import '../components/Styles/HomePage.css';
 import ItemCard from './itemCard';
 
-const HomePage = ({ isLoggedIn }) => {
+const HomePage = () => {
   const [items, setItems] = useState([]);
   const [urgentItems, setUrgentItems] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,22 +45,19 @@ const HomePage = ({ isLoggedIn }) => {
       <Searchbar setItems={setItems} />
 
       {urgentItems.length ? (
-        <div className='carousel'>
-          <div className='carousel-items'>
+        <div className='slideshow'>
+          <div className='slide-items'>
             {urgentItems.map((item, index) => (
-              <div
-                key={item.id}
-                className={`carousel-item ${currentIndex === index ? 'active' : ''}`}
-              >
+              <div key={item.id} className={`slide-item ${currentIndex === index ? 'active' : ''}`}>
                 <img src={item.picture} alt={item.name} />
-                <div className='carousel-caption'>{item.name}</div>
+                <div className='slide-caption'>{item.name}</div>
               </div>
             ))}
           </div>
-          <button className='carousel-prev' onClick={() => move(-1)}>
+          <button className='slide-prev' onClick={() => move(-1)}>
             &#10094;
           </button>
-          <button className='carousel-next' onClick={() => move(1)}>
+          <button className='slide-next' onClick={() => move(1)}>
             &#10095;
           </button>
         </div>
