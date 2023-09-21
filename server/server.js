@@ -78,6 +78,16 @@ app.get('/getUsers', userController.getUsers, (req, res) => {
   return res.status(200).json(res.locals.users);
 });
 
+app.post('/placeBid', userController.placeBid, (req, res) => {
+  if (res.locals.success === true) {
+    return res.status(200).json({ success: true, message: 'Bid placed-- Good luck!' });
+  } else {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Bid was not higher than current amount.' });
+  }
+});
+
 app.post('/buyItem', userController.buyItem, (req, res) => {
   return res.status(200);
 });

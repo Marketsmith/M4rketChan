@@ -180,14 +180,31 @@ userController.buyItem = async (req, res, next) => {
   const { username, details } = req.body;
 
   try {
-    await User.updateOne(
-      { username: username },
-      {
-        $push: {
-          items: details,
-        },
-      }
-    );
+    const user = await User.findOne({ username });
+    const currentXP = user.xp;
+
+    if (currentXP >= 100) {
+      await User.updateOne(
+        { username },
+        {
+          $set: { xp: 0 },
+          $inc: { level: 1 },
+        }
+      );
+    } else {
+      await User.updateOne(
+        { username: username },
+        {
+          $push: {
+            items: details,
+          },
+          $inc: {
+            xp: 50,
+          },
+        }
+      );
+    }
+
     return next();
   } catch (error) {
     console.error('Error adding item:', error);
@@ -195,6 +212,29 @@ userController.buyItem = async (req, res, next) => {
       status: 400,
       log: 'buyItem did not work',
       message: 'buyItem did not work',
+    });
+  }
+};
+
+userController.placeBid = async (req, res, next) => {
+  const { amount, itemName } = req.body;
+  try {
+    const item = await Item.findOne({ itemName });
+    if (amount > item.currentBid) {
+      item.currentBid = amount;
+      await item.save();
+      res.locals.success = true;
+      return next();
+    } else {
+      res.locals.success = false;
+      await item.save();
+      return next();
+    }
+  } catch {
+    return next({
+      status: 400,
+      log: 'Failed during placeBids',
+      message: 'Error during placeBid middleware.',
     });
   }
 };
