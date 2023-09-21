@@ -107,9 +107,10 @@ userController.getUsers = async (req, res, next) => {
 };
 
 itemController.createItemListing = async (req, res, next) => {
-  const { name, date, description, category, city, picture, price } = req.body;
+  const { user, name, date, description, category, city, picture, price } = req.body;
   console.log('this is req.body: ', req.body);
   const newItem = {
+    user,
     name,
     date,
     description,
