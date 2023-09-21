@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Searchbar from './searchbar';
 import '../components/Styles/HomePage.css';
 import ItemCard from './itemCard';
+import Slideshow from './slideshow';
+import useUserStore from '../zuStore';
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
-  const [urgentItems, setUrgentItems] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     async function fetchItems() {
@@ -22,49 +22,10 @@ const HomePage = () => {
     fetchItems();
   }, []);
 
-  useEffect(() => {
-    async function fetchUrgentItems() {
-      try {
-        let response = await fetch('http://localhost:3000/getUrgentItems');
-        let data = await response.json();
-        setUrgentItems(data);
-      } catch (err) {
-        console.error('Fetching urgent items failed: ', err);
-      }
-    }
-
-    fetchUrgentItems();
-  }, []);
-
-  const move = (direction) => {
-    setCurrentIndex((prev) => (prev + direction + urgentItems.length) % urgentItems.length);
-  };
-
   return (
     <div className='homebody'>
       <Searchbar setItems={setItems} />
-
-      {urgentItems.length ? (
-        <div className='slideshow'>
-          <div className='slide-items'>
-            {urgentItems.map((item, index) => (
-              <div key={item.id} className={`slide-item ${currentIndex === index ? 'active' : ''}`}>
-                <img src={item.picture} alt={item.name} />
-                <div className='slide-caption'>{item.name}</div>
-              </div>
-            ))}
-          </div>
-          <button className='slide-prev' onClick={() => move(-1)}>
-            &#10094;
-          </button>
-          <button className='slide-next' onClick={() => move(1)}>
-            &#10095;
-          </button>
-        </div>
-      ) : (
-        <p>No urgent items at the moment!</p>
-      )}
-
+      <Slideshow />
       <div className='item-container'>
         {items.length > 0 ? (
           items.map((item) => (

@@ -107,10 +107,9 @@ userController.getUsers = async (req, res, next) => {
 };
 
 itemController.createItemListing = async (req, res, next) => {
-  const { user, name, date, description, category, city, picture, price } = req.body;
+  const { name, date, description, category, city, picture, price } = req.body;
   console.log('this is req.body: ', req.body);
   const newItem = {
-    user,
     name,
     date,
     description,
@@ -247,57 +246,50 @@ bidController.createBid = async (req, res, next) => {
   const { name, price } = req.body;
 
   try {
-    const newBid = await Bid.create({ item: name, currentBid: price })
+    const newBid = await Bid.create({ item: name, currentBid: price });
     return next();
-  }
-  catch {
+  } catch {
     return next({
       status: 400,
       log: 'Failed during createBid',
-      message: 'Error during createBid middleware.'
+      message: 'Error during createBid middleware.',
     });
   }
-}
+};
 
 reviewController.createReviewPage = async (req, res, next) => {
   const { name } = req.body;
 
   try {
-    const newReviewPage = await Review.create({ item: name })
+    const newReviewPage = await Review.create({ item: name });
     return next();
-  }
-  catch {
+  } catch {
     return next({
       status: 400,
       log: 'Failed during createReviewPage',
-      message: 'Error during createReviewPage middleware.'
+      message: 'Error during createReviewPage middleware.',
     });
   }
-}
+};
 
 reviewController.addReview = async (req, res, next) => {
   const { itemName, message } = req.body;
 
   try {
-    const item = await Review.findOne({ item: itemName })
+    const item = await Review.findOne({ item: itemName });
     item.reviews.push(message);
-  }
-  catch {
+  } catch {
     return next({
       status: 400,
       log: 'Failed during addReview',
-      message: 'Error during addReview middleware.'
+      message: 'Error during addReview middleware.',
     });
   }
-}
-
-
-
-
+};
 
 module.exports = {
   userController,
   itemController,
   bidController,
-  reviewController
+  reviewController,
 };
