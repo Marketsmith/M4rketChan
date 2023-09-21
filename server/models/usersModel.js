@@ -21,6 +21,12 @@ const itemSchema = new Schema({
   currentBid: { type: Number, default: 0 }
 });
 
+const bidSchema = new Schema({
+  item: { type: String, required: true },
+  currentBid: { type: Number, default: 0 },
+  currentWinner: { type: String }
+})
+
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -32,8 +38,8 @@ const userSchema = new Schema({
     picture: { type: String },
     price: { type: Number },
   },],
-  level :  { type: Number, default: 1 },
-  xp : { type: Number, default: 0 }, 
+  level: { type: Number, default: 1 },
+  xp: { type: Number, default: 0 },
 });
 
 const SALT_WORK_FACTOR = 10;
@@ -49,6 +55,7 @@ userSchema.pre('save', function (next) {
 
 const Item = mongoose.model('Item', itemSchema);
 const User = mongoose.model('User', userSchema);
+const Bid = mongoose.model('Bid', bidSchema);
 
 const cities = ['Los Angeles', 'Seattle'];
 const categories = ['furniture', 'electronics'];
@@ -56,4 +63,5 @@ const categories = ['furniture', 'electronics'];
 module.exports = {
   Item,
   User,
+  Bid
 };

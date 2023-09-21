@@ -1,5 +1,6 @@
 const { User } = require('../models/usersModel');
 const { Item } = require('../models/usersModel');
+const { Bid } = require('../models/usersModel');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
@@ -14,6 +15,7 @@ cloudinary.config({
 
 const itemController = {};
 const userController = {};
+const bidController = {};
 
 userController.login = async (req, res, next) => {
   const { username, password } = req.body;
@@ -216,7 +218,7 @@ userController.buyItem = async (req, res, next) => {
   }
 };
 
-userController.placeBid = async (req, res, next) => {
+bidController.placeBid = async (req, res, next) => {
   const { amount, itemName } = req.body;
   try {
     const item = await Item.findOne({ itemName });
@@ -239,7 +241,26 @@ userController.placeBid = async (req, res, next) => {
   }
 };
 
+bidController.createBid = async (req, res, next) => {
+  const { name, price } = req.body;
+
+  try {
+    const newBid = await Bid.create({ item: name, currentBid: price })
+    return next();
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during createBid',
+      message: 'Error during createBid middleware.'
+    });
+  }
+}
+
+
+
 module.exports = {
   userController,
   itemController,
+  bidController
 };

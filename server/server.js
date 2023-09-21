@@ -34,7 +34,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 //route for posting an item for sale, runs middleware then currently redirects to /search page
-app.post('/sellItem', itemController.createItemListing, (req, res) => {
+app.post('/sellItem', itemController.createItemListing, itemController.createBid, (req, res) => {
   return res.redirect(303, '/');
   // return res.status(303);
 });
