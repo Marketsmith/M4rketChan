@@ -247,14 +247,53 @@ bidController.createBid = async (req, res, next) => {
   const { name, price } = req.body;
 
   try {
-    const newBid = await Bid.create({ item: name, currentBid: price })
+    const newBid = await Bid.create({ item: name, currentBid: price });
     return next();
+  } catch {
+    return next({
+      status: 400,
+      log: 'Failed during createBid',
+      message: 'Error during createBid middleware.',
+    });
+  }
+};
+
+bidController.findBid = async (req, res, next) => {
+  const { name } = req.params;
+  res.locals.data = {};
+
+  try {
+    const foundBid = await Bid.findOne({ item: name })
+    res.locals.data.bid = foundBid.currentBid;
+    return next()
   }
   catch {
     return next({
       status: 400,
-      log: 'Failed during createBid',
-      message: 'Error during createBid middleware.'
+      log: 'Failed during findBid',
+      message: 'Error during findBid middleware.'
+    });
+  }
+  // return next();
+}
+
+reviewController.findReview = async (req, res, next) => {
+  const { name } = req.params;
+
+  try {
+    const foundReview = await Review.findOne({ item: name })
+    const reviewArray = [];
+    foundReview.reviews.forEach((review) => {
+      reviewArray.push(review);
+    })
+    res.locals.data.review = reviewArray;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during findReview',
+      message: 'Error during findReview middleware.'
     });
   }
 }
@@ -303,17 +342,16 @@ reviewController.createReviewPage = async (req, res, next) => {
   const { name } = req.body;
 
   try {
-    const newReviewPage = await Review.create({ item: name })
+    const newReviewPage = await Review.create({ item: name });
     return next();
-  }
-  catch {
+  } catch {
     return next({
       status: 400,
       log: 'Failed during createReviewPage',
-      message: 'Error during createReviewPage middleware.'
+      message: 'Error during createReviewPage middleware.',
     });
   }
-}
+};
 
 reviewController.addReview = async (req, res, next) => {
   const { itemName, message } = req.body;
@@ -330,18 +368,14 @@ reviewController.addReview = async (req, res, next) => {
     return next({
       status: 400,
       log: 'Failed during addReview',
-      message: 'Error during addReview middleware.'
+      message: 'Error during addReview middleware.',
     });
   }
-}
-
-
-
-
+};
 
 module.exports = {
   userController,
   itemController,
   bidController,
-  reviewController
+  reviewController,
 };

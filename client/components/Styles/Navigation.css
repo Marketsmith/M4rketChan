@@ -39,7 +39,8 @@ select {
 }
 
 .nav-login,
-.nav-sell {
+.nav-sell,
+.nav-username {
   color: #fff;
   text-decoration: none;
   margin-left: 1rem;

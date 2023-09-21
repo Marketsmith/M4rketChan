@@ -16,9 +16,9 @@ const itemSchema = new Schema({
   city: { type: String, required: true },
   category: { type: String, required: true },
   address: { type: String },
-  picture: { type: String },
+  picture: { type: String, default: null },
   price: { type: Number },
-  currentBid: { type: Number, default: 0 }
+  currentBid: { type: Number, default: 0 },
 });
 
 // const itemSchema = new Schema({
@@ -31,31 +31,33 @@ const itemSchema = new Schema({
 //   address: { type: String },
 //   picture: { type: String },
 //   price: { type: Number },
-//   currentBid: { type: Number, default: 0 }
+//   currentBid: { type: Number, default: 0 },
 // });
 
 const bidSchema = new Schema({
   item: { type: String, required: true },
   currentBid: { type: Number, default: 0 },
-  currentWinner: { type: String }
-})
+  currentWinner: { type: String },
+});
 
 const reviewSchema = new Schema({
   item: { type: String, required: true },
-  reviews: { type: Array, default: [] }
-})
+  reviews: { type: Array, default: [] },
+});
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  items: [{
-    name: { type: String },
-    date: { type: String, default: Date.now() },
-    description: { type: String, default: '' },
-    city: { type: String, required: true },
-    picture: { type: String },
-    price: { type: Number },
-  },],
+  items: [
+    {
+      name: { type: String },
+      date: { type: String, default: Date.now() },
+      description: { type: String, default: '' },
+      city: { type: String, required: true },
+      picture: { type: String },
+      price: { type: Number },
+    },
+  ],
   level: { type: Number, default: 1 },
   xp: { type: Number, default: 0 },
 });
@@ -74,7 +76,7 @@ userSchema.pre('save', function (next) {
 const Item = mongoose.model('Item', itemSchema);
 const User = mongoose.model('User', userSchema);
 const Bid = mongoose.model('Bid', bidSchema);
-const Review = mongoose.model('Review', reviewSchema)
+const Review = mongoose.model('Review', reviewSchema);
 
 const cities = ['Los Angeles', 'Seattle'];
 const categories = ['furniture', 'electronics'];
@@ -83,5 +85,5 @@ module.exports = {
   Item,
   User,
   Bid,
-  Review
+  Review,
 };

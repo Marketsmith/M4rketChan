@@ -45,7 +45,15 @@ export default function ItemCard(props) {
 
   return (
     <Card sx={{ minWidth: 345 }}>
-      <CardMedia sx={{ height: 100 }} image={props.picture} title='item image' />
+      <CardMedia
+        sx={{
+          height: 100,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+        }}
+        image={props.picture}
+        title='item image'
+      />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {props.name}
