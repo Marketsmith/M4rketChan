@@ -115,7 +115,7 @@ itemController.createItemListing = async (req, res, next) => {
     price,
   };
   try {
-    await Item.create({ newItem });
+    await Item.create( newItem );
     return next();
   } catch (err) {
     console.error(err);
@@ -216,18 +216,26 @@ userController.buyItem = async (req, res, next) => {
 };
 
 userController.placeBid = async (req, res, next) => {
-  const { amount, itemName } = req.body;
+  const { amount, itemName, username } = req.body;
+
+  const user = await User.findOne({ username })
+
   try {
-    const item = await Item.findOne({ itemName });
-    if (amount > item.currentBid) {
-      item.currentBid = amount;
-      await item.save();
-      res.locals.success = true;
-      return next();
-    } else {
-      res.locals.success = false;
-      await item.save();
-      return next();
+    for (let i = 0; i < user.items.length; i++){
+      if (user.items[i].name === itemName){
+        const foundItem = user.items[i].currentBid;
+        if (amount > foundItem) {
+          user.items[i].currentBid = amount;
+          user.markModified('items');
+          await user.save();
+          res.locals.success = true;
+          return next();
+        } else {
+          res.locals.success = false;
+          await user.save();
+          return next();
+        }
+      }
     }
   }
   catch {
