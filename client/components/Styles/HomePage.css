@@ -28,3 +28,52 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.slideshow {
+  position: relative;
+  width: 300px;
+  overflow: hidden;
+}
+
+.slide-items {
+  display: flex;
+  width: max-content;
+  transition: transform 0.5s;
+}
+
+.slide-item {
+  min-width: 300px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.slide-item:not(.active) {
+  display: none;
+}
+
+.slide-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+}
+
+.slide-prev,
+.slide-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+}
+
+.slide-prev {
+  left: 10px;
+}
+.slide-next {
+  right: 10px;
+}
