@@ -50,6 +50,14 @@ app.post(
   }
 );
 
+app.get('/getReviewAndBid/:name', bidController.findBid, reviewController.findReview, (req, res) => {
+  return res.status(200).json(res.locals.data)
+})
+
+app.post('/addReview', reviewController.addReview, (req, res) => {
+  return res.status(200).json({ success: true, message: 'Added review!' })
+})
+
 app.post('/login', userController.login, (req, res) => {
   if (res.locals.success) return res.status(200).json(res.locals.success);
   else return res.status(401).json(res.locals.success);

@@ -27,8 +27,19 @@ export default function ItemCard(props) {
     date: props.date,
   };
 
-  const messageRedirect = () => {
+  const reviewAndBid = props.name; 
+
+  const messageRedirect = async () => {
     dispatch({ type: DETAILS, payload: itemDetails });
+
+    const response = await fetch('http://localhost:3000/getReviewAndBid', {
+      method : 'POST',
+      headers : {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reviewAndBid)
+    })    
+
     navigate('../details');
   };
 
