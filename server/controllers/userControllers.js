@@ -106,6 +106,23 @@ userController.getUsers = async (req, res, next) => {
   }
 };
 
+userController.getUserXP = async (req, res, next) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.find({username}, 'xp');
+    res.locals.xp = user[0].xp;
+    return next()
+
+  } catch (err) {
+    return next({
+      err,
+      message: 'Error retrieving all users from the database',
+      log: 'Error in userController.getUsers',
+    });
+  }
+};
+
 itemController.createItemListing = async (req, res, next) => {
   const { user, name, date, description, category, city, picture, price } = req.body;
   console.log('this is req.body: ', req.body);
