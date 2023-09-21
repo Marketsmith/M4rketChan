@@ -1,25 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import Navigation from "./navigation";
-import { DetailsActionCreator } from "../actions/actions.js";
-import './styles.css'
-import ItemCard from "./itemCard";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import Navigation from './navigation';
+import { DetailsActionCreator } from '../actions/actions.js';
+import ItemCard from './itemCard';
+import '../components/Styles/SearchBar.css';
 
 const Searchbar = () => {
   const dispatch = useDispatch();
   //array of items and cities that we can modify
   //items/categories and cities here should match the ones we use in our database just for simplicity
-  const cities = ["los-angeles", "new-york", "chicago"];
-  const items = ["furniture", "electronics", "clothing"];
+  const cities = ['los-angeles', 'new-york', 'chicago'];
+  const items = ['furniture', 'electronics', 'clothing'];
 
-  const [selectedItem, setSelectedItem] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  //state to store data from server response
+  const [selectedItem, setSelectedItem] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+  //state to store data from server responses
   const [itemsData, setItemsData] = useState([]);
-
 
   const handleDetails = (item) => {
     const action = DetailsActionCreator(item);
@@ -41,10 +39,10 @@ const Searchbar = () => {
       selectedCity,
     };
     //fetch post request to itemsByCity route to retrieve queried data
-    fetch("http://localhost:3000/itemsByCity", {
-      method: "POST",
+    fetch('http://localhost:3000/itemsByCity', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(searchData), // Convert data to JSON, must be sent as object like we did here
     })
@@ -54,7 +52,7 @@ const Searchbar = () => {
         setItemsData(parsedData);
       })
       .catch((error) => {
-        console.log("Error retrieving data:", error);
+        console.log('Error retrieving data:', error);
       });
   };
 
@@ -62,23 +60,23 @@ const Searchbar = () => {
   useEffect(() => {}, [itemsData]);
 
   return (
-    <div className="searchbody">
+    <div className='searchbody'>
       <Navigation />
       <br />
-      <select className="option" value={selectedItem} onChange={handleItemChange}>
-        <option value="">Select an item</option>
+      <select className='categories' value={selectedItem} onChange={handleItemChange}>
+        <option value=''>Select a Category</option>
         {items.map((item, index) => (
           <option key={index} value={item}>
             {item}
           </option>
         ))}
       </select>
-      <select className="option" value={selectedCity} onChange={handleCityChange}>
-        <option value="">Select a city</option>
+      <select className='locations' value={selectedCity} onChange={handleCityChange}>
+        <option value=''>Select a city</option>
         {cities.map((city, index) => (
           <option key={index} value={city}>
-            {" "}
-            {city}{" "}
+            {' '}
+            {city}{' '}
           </option>
         ))}
       </select>

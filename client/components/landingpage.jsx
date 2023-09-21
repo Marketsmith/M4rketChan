@@ -1,35 +1,44 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
-import { useNavigate } from "react-router";
-import { CLOUDINARY_CONSTS } from "../constants/actionTypes";
+import React, { useState, useEffect } from 'react';
+import Searchbar from './searchbar';
+import '../components/Styles/HomePage.css';
+import ItemCard from './itemCard';
 
 const HomePage = ({ isLoggedIn }) => {
-  //const navigate = useNavigate();
-  // if(!isLoggedIn) {
-  //   navigate ('/signup')
+  const [items, setItems] = useState([]);
 
-  // }
+  useEffect(() => {
+    function fetchItems() {
+      return fetch('http://localhost:3000/getItems')
+        .then((data) => {
+          console.log('this is the data: ', data);
+          return data.json();
+        })
+        .then((data) => {
+          setItems(data);
+        })
+        .catch((err) => {
+          console.error('Fetching items failed: ', err);
+        });
+    }
+    fetchItems();
+  }, []);
 
   return (
-    <div className="homebody">
-      <div>
-        <h2>Welcome to the Goblin Market</h2>
-      </div>
-      <div>
-        <h3>Buy or sell goods in your city</h3>
-      </div>
-      <div >
-      <Link to="/searchBar" style={{ textDecoration: 'none' }}>
-        <button className="homebuttons" type="button"> Buy </button>
-      </Link>
-      <Link to="/sellItem" style={{ textDecoration: 'none' }}>
-        <button className="homebuttons" type="button"> Sell </button>
-      </Link>
-      <br />
-      <br />
+    <div className='homebody'>
+      <Searchbar />
+      <div className='item-container'>
+        {items.map((item) => (
+          <div className='item-box'>
+            <ItemCard
+              picture={item.picture}
+              description={item.description}
+              name={item.name}
+              price={item.price}
+            />
+          </div>
+        ))}
       </div>
     </div>
-    
   );
 };
 

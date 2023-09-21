@@ -6,9 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import './styles.css'
-import { useNavigate } from "react-router-dom";
-
+import './styles.css';
+import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
 import { DETAILS } from "../constants/actionTypes"; 

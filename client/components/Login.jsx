@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../components/Styles/Login.css';
 
 import useUserStore from '../zuStore';
 
@@ -39,7 +40,7 @@ const Login = () => {
       .then((data) => data.json())
       .then((data) => {
         if (data) {
-          navigate('./home');
+          navigate('../');
         } else {
           setErrorMessage('Invalid username/password. Try again!');
         }

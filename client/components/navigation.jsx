@@ -1,32 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import {useState, useEffect} from 'react'
+
+import { Link, useNavigate } from 'react-router-dom';
+import './Styles/Navigation.css';
 
 const Navigation = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const handleClick = (event) => {
+    const selectedPage = event.target.value;
+    navigate(selectedPage); // navigate ('./search')
+  };
 
-    const handleClick= (event) => {
-        const selectedPage = event.target.value
-        navigate(selectedPage); // navigate ('./search')
-    }
+  return (
+    <div className='navbar'>
+      <select className='nav-dropdown' onChange={handleClick}>
+        <option value='navigation'>Navigate</option>
+        <option value='/'>Home Page</option>
+        <option value='/sell-item'>Sell</option>
+      </select>
 
-    return (
-        <>
-        <label id = 'navBar'>
-            <select onChange = {handleClick}>
-                <option value ='navigation'>Navigation</option>
-                <option value="/searchBar">Search</option>
-                <option value="/sellitem">Sell</option>
-                {/* <option value="/favorites">Favorites</option>
-                <option value="/listings" >Listing</option> */}
-            </select>
-
-        </label>
-
-        </>
-    );
+      <div className='action-buttons'>
+        <Link to='/sellItem' className='nav-sell'>
+          Sell
+        </Link>
+        <Link to='/login-page' className='nav-login'>
+          Login
+        </Link>
+      </div>
+    </div>
+  );
 };
-
 export default Navigation;
