@@ -10,7 +10,10 @@ const Navigation = () => {
 
   const handleClick = (event) => {
     const selectedPage = event.target.value;
-    if (selectedPage === '/sellItem' || (selectedPage === '/myAccount' && !zuUsername)) {
+    if (
+      (selectedPage === '/sellItem' && !zuUsername) ||
+      (selectedPage === '/myAccount' && !zuUsername)
+    ) {
       navigate('/login-page');
     } else {
       navigate(selectedPage);
