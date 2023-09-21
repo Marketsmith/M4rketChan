@@ -1,9 +1,7 @@
 .slideshow {
-  position: relative;
   width: 100%;
-  height: 300px;
   overflow: hidden;
-  text-align: center;
+  position: relative;
 }
 
 .slideshow,
