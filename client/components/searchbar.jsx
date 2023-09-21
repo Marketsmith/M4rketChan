@@ -27,13 +27,11 @@ const Searchbar = () => {
   };
   const handleItemChange = (event) => {
     setSelectedItem(event.target.value);
-    console.log(selectedItem);
     //unsure how to view what state currently is even though when updated it shows as blank in browser
   };
 
   const handleCityChange = (event) => {
     setSelectedCity(event.target.value);
-    console.log(selectedCity);
   };
 
   const handleSearch = () => {
@@ -52,7 +50,6 @@ const Searchbar = () => {
     })
       .then((data) => data.json())
       .then((parsedData) => {
-        console.log("this is the data:", parsedData);
         //updated itemData state with fetched data
         setItemsData(parsedData);
       })
@@ -88,7 +85,7 @@ const Searchbar = () => {
       <button onClick={handleSearch}>Search</button>
         {itemsData.map((item) => (
           <div className="item-box">
-            <ItemCard picture = {item.picture} description ={item.description} name ={item.name} price = {item.price}>
+            <ItemCard picture = {item.picture} description ={item.description} name ={item.name} price = {item.price} city = {item.city} date = {item.date}>
             </ItemCard>
           </div>
         ))} 

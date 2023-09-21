@@ -175,6 +175,36 @@ userController.getListings = async (req, res, next) => {
   }
 };
 
+
+userController.buyItem = async (req, res, next) => {
+  const { username, details } = req.body;
+  console.log('Received request with username:', username);
+  console.log('Received details:', details);
+  console.log('Request Body:', req.body);
+
+  try {
+    await User.updateOne(
+      { username: username }, 
+      {
+        $push: {
+          items: details, 
+        },
+      }
+    );
+    console.log('Item added successfully.');
+    return next();
+  } catch (error) {
+    console.error('Error adding item:', error);
+    return next({
+      status: 400,
+      log: 'buyItem did not work',
+      message: 'buyItem did not work',
+    });
+  }
+};
+
+
+
 module.exports = {
   userController,
   itemController,

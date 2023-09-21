@@ -10,11 +10,30 @@ import './styles.css'
 import { useNavigate } from "react-router-dom";
 
 
+import { useDispatch, useSelector } from "react-redux";
+import { DETAILS } from "../constants/actionTypes"; 
+
+
 export default function ItemCard(props) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // const details = useSelector((state) => state.user.details);
+
+  const itemDetails = {
+    name: props.name,
+    picture: props.picture,
+    description: props.description,
+    price: props.price,
+    city : props.city,
+    date : props.date
+  };
+
+
   const messageRedirect = () => {
-    navigate('../details')
+    dispatch({ type: DETAILS, payload: itemDetails });
+    navigate('../details');
+
   }
 
   return (
@@ -36,7 +55,7 @@ export default function ItemCard(props) {
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small" onClick={() => messageRedirect()}>Messages</Button>
+      <Button size="small" onClick={messageRedirect}>Messages</Button>
     </CardActions>
   </Card>
   );

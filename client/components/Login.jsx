@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import useUserStore from '../zuStore';
+
+
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const { zuUsername, zuSetUsername } = useUserStore();
+
+  console.log(zuUsername);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'username') {
       setUsername(value);
+      zuSetUsername(value);
     } else if (name === 'password') {
       setPassword(value);
     }
@@ -40,6 +48,7 @@ const Login = () => {
   };
 
   return (
+   
     <div className='loginpage'>
       <div className='loginbox'>
         <div>
@@ -85,6 +94,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 
