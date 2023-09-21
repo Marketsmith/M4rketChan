@@ -1,23 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Navigation from './navigation';
 import { DetailsActionCreator } from '../actions/actions.js';
-import ItemCard from './itemCard';
 import '../components/Styles/SearchBar.css';
 
-const Searchbar = () => {
+const Searchbar = ({ setItems }) => {
   const dispatch = useDispatch();
   //array of items and cities that we can modify
   //items/categories and cities here should match the ones we use in our database just for simplicity
   const cities = ['los-angeles', 'new-york', 'chicago'];
-  const items = ['furniture', 'electronics', 'clothing'];
+  const categories = ['furniture', 'electronics', 'clothing'];
 
   const [selectedItem, setSelectedItem] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   //state to store data from server responses
-  const [itemsData, setItemsData] = useState([]);
 
   const handleDetails = (item) => {
     const action = DetailsActionCreator(item);
@@ -25,7 +22,6 @@ const Searchbar = () => {
   };
   const handleItemChange = (event) => {
     setSelectedItem(event.target.value);
-    //unsure how to view what state currently is even though when updated it shows as blank in browser
   };
 
   const handleCityChange = (event) => {
@@ -49,15 +45,12 @@ const Searchbar = () => {
       .then((data) => data.json())
       .then((parsedData) => {
         //updated itemData state with fetched data
-        setItemsData(parsedData);
+        setItems(parsedData);
       })
       .catch((error) => {
         console.log('Error retrieving data:', error);
       });
   };
-
-  //trigger useEffect whenever itemsData state changes by including it as dependency
-  useEffect(() => {}, [itemsData]);
 
   return (
     <div className='searchbody'>
@@ -65,9 +58,9 @@ const Searchbar = () => {
       <br />
       <select className='categories' value={selectedItem} onChange={handleItemChange}>
         <option value=''>Select a Category</option>
-        {items.map((item, index) => (
-          <option key={index} value={item}>
-            {item}
+        {categories.map((category, index) => (
+          <option key={index} value={category}>
+            {category}
           </option>
         ))}
       </select>
@@ -75,20 +68,12 @@ const Searchbar = () => {
         <option value=''>Select a city</option>
         {cities.map((city, index) => (
           <option key={index} value={city}>
-            {' '}
-            {city}{' '}
+            {city}
           </option>
         ))}
       </select>
       <button onClick={handleSearch}>Search</button>
-        {itemsData.map((item) => (
-          <div className="item-box">
-            <ItemCard picture = {item.picture} description ={item.description} name ={item.name} price = {item.price} city = {item.city} date = {item.date}>
-            </ItemCard>
-          </div>
-        ))} 
-      </div>
-    
+    </div>
   );
 };
 

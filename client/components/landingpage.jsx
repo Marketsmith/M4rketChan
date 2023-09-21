@@ -25,18 +25,22 @@ const HomePage = ({ isLoggedIn }) => {
 
   return (
     <div className='homebody'>
-      <Searchbar />
+      <Searchbar setItems={setItems} />
       <div className='item-container'>
-        {items.map((item) => (
-          <div className='item-box'>
-            <ItemCard
-              picture={item.picture}
-              description={item.description}
-              name={item.name}
-              price={item.price}
-            />
-          </div>
-        ))}
+        {items.length > 0 ? (
+          items.map((item) => (
+            <div className='item-box'>
+              <ItemCard
+                picture={item.picture}
+                description={item.description}
+                name={item.name}
+                price={item.price}
+              />
+            </div>
+          ))
+        ) : (
+          <p>Nothing to Display</p>
+        )}
       </div>
     </div>
   );
