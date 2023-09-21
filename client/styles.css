@@ -89,3 +89,8 @@ h1 {
 .reviewbox {
   margin-left: 10px;
 }
+
+#buy-it-now {
+  display: flex;
+  justify-content: space-between;
+}
