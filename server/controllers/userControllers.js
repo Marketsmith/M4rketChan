@@ -221,7 +221,7 @@ userController.buyItem = async (req, res, next) => {
 bidController.placeBid = async (req, res, next) => {
   const { amount, itemName } = req.body;
   try {
-    const item = await Item.findOne({ itemName });
+    const item = await Bid.findOne({ item: itemName });
     if (amount > item.currentBid) {
       item.currentBid = amount;
       await item.save();
