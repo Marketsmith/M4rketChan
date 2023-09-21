@@ -175,6 +175,32 @@ userController.getListings = async (req, res, next) => {
   }
 };
 
+
+userController.buyItem = async (req, res, next) => {
+  const { username, details } = req.body;
+
+  try {
+    await User.updateOne(
+      { username: username }, 
+      {
+        $push: {
+          items: details, 
+        },
+      }
+    );
+    return next();
+  } catch (error) {
+    console.error('Error adding item:', error);
+    return next({
+      status: 400,
+      log: 'buyItem did not work',
+      message: 'buyItem did not work',
+    });
+  }
+};
+
+
+
 module.exports = {
   userController,
   itemController,

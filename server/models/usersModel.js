@@ -24,7 +24,16 @@ const itemSchema = new Schema({
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
+  items: [{
+    name: { type: String },
+    date: { type: String, default: Date.now() },
+    description: { type: String, default: '' },
+    city: { type: String, required: true },
+    picture: { type: String },
+    price: { type: Number },
+  },],
+  level :  { type: Number, default: 1 },
+  xp : { type: Number, default: 0 }, 
 });
 
 const SALT_WORK_FACTOR = 10;
