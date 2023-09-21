@@ -45,7 +45,7 @@ const SignupPage = () => {
           'Content-Type': 'application/json',
         },
       })
-        .then((data) => navigate('./login-page'))
+        .then((data) => navigate('/login-page'))
         // .then((data) => data.json())
         // .then((data) => {
         //     console.log('out of the if statement');
