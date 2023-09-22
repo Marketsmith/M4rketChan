@@ -50,13 +50,18 @@ app.post(
   }
 );
 
-app.get('/getReviewAndBid/:name', bidController.findBid, reviewController.findReview, (req, res) => {
-  return res.status(200).json(res.locals.data)
-})
+app.get(
+  '/getReviewAndBid/:name',
+  bidController.findBid,
+  reviewController.findReview,
+  (req, res) => {
+    return res.status(200).json(res.locals.data);
+  }
+);
 
 app.post('/addReview', reviewController.addReview, (req, res) => {
-  return res.status(200).json({ success: true, message: 'Added review!' })
-})
+  return res.status(200).json({ success: true, message: 'Added review!' });
+});
 
 app.post('/login', userController.login, (req, res) => {
   if (res.locals.success) return res.status(200).json(res.locals.success);
@@ -108,7 +113,11 @@ app.post('/placeBid', bidController.placeBid, (req, res) => {
 });
 
 app.post('/buyItem', userController.buyItem, (req, res) => {
-  return res.status(200);
+  if (res.locals.success === true) {
+    return res.status(200).json({ success: true, message: 'Purchased Item!' });
+  } else {
+    return res.status(400).json({ success: false, message: 'Not enough of funds.' });
+  }
 });
 
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
