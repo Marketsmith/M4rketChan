@@ -77,12 +77,17 @@ const SignupPage = () => {
   return (
     <div id='signup-page'>
       <div id='signup-container'>
-        <h1 id='welcome-banner'>Welcome to M4rketChan</h1>
+        <h1 id='welcome-banner'>Welcome to Panda Whale</h1>
         <div id='submit-form'>
           <form id='signup-form' onSubmit={handleSubmit}>
             <div id='user-credentials-form'>
               <div id='username-input'>
-                <input name='username' value={usernameInput} onChange={handleInput}></input>
+                <input
+                  name='username'
+                  placeholder='username'
+                  value={usernameInput}
+                  onChange={handleInput}
+                ></input>
                 {usernameTaken && (
                   <p id='username-taken-notification'>Username is already taken.</p>
                 )}
@@ -92,6 +97,8 @@ const SignupPage = () => {
                 value={passwordInput}
                 onChange={handleInput}
                 type='password'
+                placeholder='password'
+                required
               ></input>
             </div>
             <div id='submit-button'>

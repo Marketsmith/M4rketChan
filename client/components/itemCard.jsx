@@ -27,14 +27,33 @@ export default function ItemCard(props) {
     date: props.date,
   };
 
-  const messageRedirect = () => {
+  const reviewAndBid = props.name; 
+
+  const messageRedirect = async () => {
     dispatch({ type: DETAILS, payload: itemDetails });
+
+    const response = await fetch('http://localhost:3000/getReviewAndBid', {
+      method : 'POST',
+      headers : {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reviewAndBid)
+    })    
+
     navigate('../details');
   };
 
   return (
-    <Card sx={{ minWidth: 345 }}>
-      <CardMedia sx={{ height: 100 }} image={props.picture} title='item image' />
+    <Card sx={{ minWidth: 345 }} className='fullSizeCard'>
+      <CardMedia
+        sx={{
+          height: 100,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+        }}
+        image={props.picture}
+        title='item image'
+      />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {props.name}
@@ -48,7 +67,7 @@ export default function ItemCard(props) {
       </CardContent>
       <CardActions>
         <Button size='small' onClick={messageRedirect}>
-          Messages
+          More Details
         </Button>
       </CardActions>
     </Card>

@@ -2,34 +2,33 @@ import React, { useState, useEffect } from 'react';
 import Searchbar from './searchbar';
 import '../components/Styles/HomePage.css';
 import ItemCard from './itemCard';
+import Slideshow from './slideshow';
 
-const HomePage = ({ isLoggedIn }) => {
+const HomePage = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    function fetchItems() {
-      return fetch('http://localhost:3000/getItems')
-        .then((data) => {
-          console.log('this is the data: ', data);
-          return data.json();
-        })
-        .then((data) => {
-          setItems(data);
-        })
-        .catch((err) => {
-          console.error('Fetching items failed: ', err);
-        });
+    async function fetchItems() {
+      try {
+        let response = await fetch('http://localhost:3000/getItems');
+        let data = await response.json();
+        setItems(data);
+      } catch (err) {
+        console.error('Fetching items failed: ', err);
+      }
     }
+
     fetchItems();
   }, []);
 
   return (
     <div className='homebody'>
       <Searchbar setItems={setItems} />
+      <Slideshow />
       <div className='item-container'>
         {items.length > 0 ? (
           items.map((item) => (
-            <div className='item-box'>
+            <div className='item-box' key={item.id}>
               <ItemCard
                 picture={item.picture}
                 description={item.description}

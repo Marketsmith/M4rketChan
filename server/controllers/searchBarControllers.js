@@ -1,5 +1,6 @@
 const { User } = require('../models/usersModel');
 const { Item } = require('../models/usersModel');
+const { Review } = require('../models/usersModel');
 const path = require('path');
 
 const searchBarController = {};
@@ -31,6 +32,22 @@ searchBarController.getItems = async (req, res, next) => {
       err,
       message: 'Error retrieving all items from the database',
       log: 'Error in searchBarController.getItems',
+    });
+  }
+};
+
+searchBarController.getNewItems = async (req, res, next) => {
+  try {
+    const newItems = await Item.find().sort({ picture: -1 }).limit(5);
+    console.log(newItems);
+    res.locals.newItems = newItems;
+
+    return next();
+  } catch (err) {
+    return next({
+      err,
+      message: 'Error retrieving newest items from the database',
+      log: 'Error in searchBarController.getNewItems',
     });
   }
 };

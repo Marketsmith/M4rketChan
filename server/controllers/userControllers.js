@@ -106,6 +106,23 @@ userController.getUsers = async (req, res, next) => {
   }
 };
 
+userController.getUserLevel = async (req, res, next) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.find({username}, 'level');
+    res.locals.level = user[0].level;
+    return next()
+
+  } catch (err) {
+    return next({
+      err,
+      message: 'Error retrieving all users from the database',
+      log: 'Error in userController.getUsers',
+    });
+  }
+};
+
 userController.getUserXP = async (req, res, next) => {
   const { username } = req.params;
 
@@ -264,14 +281,93 @@ bidController.createBid = async (req, res, next) => {
   const { name, price } = req.body;
 
   try {
-    const newBid = await Bid.create({ item: name, currentBid: price })
+    const newBid = await Bid.create({ item: name, currentBid: price });
     return next();
+  } catch {
+    return next({
+      status: 400,
+      log: 'Failed during createBid',
+      message: 'Error during createBid middleware.',
+    });
+  }
+};
+
+bidController.findBid = async (req, res, next) => {
+  const { name } = req.params;
+  res.locals.data = {};
+
+  try {
+    const foundBid = await Bid.findOne({ item: name })
+    res.locals.data.bid = foundBid.currentBid;
+    return next()
   }
   catch {
     return next({
       status: 400,
-      log: 'Failed during createBid',
-      message: 'Error during createBid middleware.'
+      log: 'Failed during findBid',
+      message: 'Error during findBid middleware.'
+    });
+  }
+  // return next();
+}
+
+reviewController.findReview = async (req, res, next) => {
+  const { name } = req.params;
+
+  try {
+    const foundReview = await Review.findOne({ item: name })
+    const reviewArray = [];
+    foundReview.reviews.forEach((review) => {
+      reviewArray.push(review);
+    })
+    res.locals.data.review = reviewArray;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during findReview',
+      message: 'Error during findReview middleware.'
+    });
+  }
+}
+
+bidController.findBid = async (req, res, next) => {
+  const { name } = req.params;
+  res.locals.data = {};
+
+  try {
+    const foundBid = await Bid.findOne({ item: name })
+    res.locals.data.bid = foundBid.currentBid;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during findBid',
+      message: 'Error during findBid middleware.'
+    });
+  }
+  // return next();
+}
+
+reviewController.findReview = async (req, res, next) => {
+  const { name } = req.params;
+
+  try {
+    const foundReview = await Review.findOne({ item: name })
+    const reviewArray = [];
+    foundReview.reviews.forEach((review) => {
+      reviewArray.push(review);
+    })
+    res.locals.data.review = reviewArray;
+    return next()
+  }
+  catch {
+    return next({
+      status: 400,
+      log: 'Failed during findReview',
+      message: 'Error during findReview middleware.'
     });
   }
 }
@@ -280,41 +376,40 @@ reviewController.createReviewPage = async (req, res, next) => {
   const { name } = req.body;
 
   try {
-    const newReviewPage = await Review.create({ item: name })
+    const newReviewPage = await Review.create({ item: name });
     return next();
-  }
-  catch {
+  } catch {
     return next({
       status: 400,
       log: 'Failed during createReviewPage',
-      message: 'Error during createReviewPage middleware.'
+      message: 'Error during createReviewPage middleware.',
     });
   }
-}
+};
 
 reviewController.addReview = async (req, res, next) => {
   const { itemName, message } = req.body;
 
   try {
     const item = await Review.findOne({ item: itemName })
+    console.log('here is the item', item);
     item.reviews.push(message);
+    item.markModified('reviews', reviewController);
+    await item.save();
+    return next();
   }
   catch {
     return next({
       status: 400,
       log: 'Failed during addReview',
-      message: 'Error during addReview middleware.'
+      message: 'Error during addReview middleware.',
     });
   }
-}
-
-
-
-
+};
 
 module.exports = {
   userController,
   itemController,
   bidController,
-  reviewController
+  reviewController,
 };
