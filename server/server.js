@@ -50,6 +50,22 @@ app.post(
   }
 );
 
+app.get('/checkLevel/:user', userController.checkLevel, (req, res) => {
+  if (res.success) {
+    return res.status(200).json({ success: true });
+  } else {
+    return res.status(400).json({ success: false });
+  }
+});
+
+app.get('/checkLevel/:user', userController.checkLevel, (req, res) => {
+  if (res.success) {
+    return res.status(200).json({ success: true });
+  } else {
+    return res.status(400).json({ success: false });
+  }
+});
+
 app.get(
   '/getReviewAndBid/:name',
   bidController.findBid,
@@ -100,6 +116,14 @@ app.get('/listings', sessionController.isLoggedIn, userController.getListings, (
 
 app.get('/getUsers', userController.getUsers, (req, res) => {
   return res.status(200).json(res.locals.users);
+});
+
+app.get('/getUserXP/:username', userController.getUserXP, (req, res) => {
+  return res.status(200).json(res.locals.xp);
+});
+
+app.get('/getUserLevel/:username', userController.getUserLevel, (req, res) => {
+  return res.status(200).json(res.locals.level);
 });
 
 app.post('/placeBid', bidController.placeBid, (req, res) => {

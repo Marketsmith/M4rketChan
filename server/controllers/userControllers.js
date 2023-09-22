@@ -106,6 +106,38 @@ userController.getUsers = async (req, res, next) => {
   }
 };
 
+userController.getUserLevel = async (req, res, next) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.find({ username }, 'level');
+    res.locals.level = user[0].level;
+    return next();
+  } catch (err) {
+    return next({
+      err,
+      message: 'Error retrieving all users from the database',
+      log: 'Error in userController.getUsers',
+    });
+  }
+};
+
+userController.getUserXP = async (req, res, next) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.find({ username }, 'xp');
+    res.locals.xp = user[0].xp;
+    return next();
+  } catch (err) {
+    return next({
+      err,
+      message: 'Error retrieving all users from the database',
+      log: 'Error in userController.getUsers',
+    });
+  }
+};
+
 itemController.createItemListing = async (req, res, next) => {
   const { user, name, date, description, category, city, picture, price } = req.body;
   console.log('this is req.body: ', req.body);
@@ -218,6 +250,26 @@ userController.buyItem = async (req, res, next) => {
       status: 400,
       log: 'buyItem did not work',
       message: 'buyItem did not work',
+    });
+  }
+};
+
+userController.checkLevel = async (req, res, next) => {
+  const { user } = req.params;
+  try {
+    const foundUser = await User.findOne({ username: user });
+    if (foundUser.level > 1) {
+      res.success = true;
+      return next();
+    } else {
+      res.success = false;
+      return next();
+    }
+  } catch (error) {
+    return next({
+      status: 400,
+      log: 'checkLevel did not work',
+      message: 'checkLevel did not work',
     });
   }
 };

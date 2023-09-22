@@ -28,6 +28,7 @@
 }
 
 .detailsbox {
+  display: flex;
   width: 100%;
   max-width: 500px;
   padding: 1rem;
@@ -38,6 +39,7 @@
 
 .reviewbox {
   margin: 1rem 0;
+  width: 100%;
 }
 
 #buy-it-now {
@@ -50,4 +52,8 @@
 #review-comment {
   margin: 10px;
   font-style: italic;
+}
+
+.HeartButton {
+  float: right;
 }
