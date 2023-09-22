@@ -50,6 +50,14 @@ app.post(
   }
 );
 
+app.get('/checkLevel/:user', userController.checkLevel, (req, res) => {
+  if (res.success) {
+    return res.status(200).json({ success: true })
+  } else {
+    return res.status(400).json({ success: false })
+  }
+})
+
 app.get('/getReviewAndBid/:name', bidController.findBid, reviewController.findReview, (req, res) => {
   return res.status(200).json(res.locals.data)
 })

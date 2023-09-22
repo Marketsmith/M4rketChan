@@ -211,7 +211,6 @@ userController.buyItem = async (req, res, next) => {
 
     return next();
   } catch (error) {
-    console.error('Error adding item:', error);
     return next({
       status: 400,
       log: 'buyItem did not work',
@@ -219,6 +218,27 @@ userController.buyItem = async (req, res, next) => {
     });
   }
 };
+
+userController.checkLevel = async (req, res, next) => {
+  const { user } = req.params;
+  try {
+    const foundUser = await User.findOne({ username: user });
+    if (foundUser.level > 1) {
+      res.success = true;
+      return next();
+    } else {
+      res.success = false;
+      return next();
+    }
+  }
+  catch (error) {
+    return next({
+      status: 400,
+      log: 'checkLevel did not work',
+      message: 'checkLevel did not work',
+    });
+  }
+}
 
 bidController.placeBid = async (req, res, next) => {
   const { amount, itemName } = req.body;

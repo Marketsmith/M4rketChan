@@ -60,6 +60,7 @@ const userSchema = new Schema({
   ],
   level: { type: Number, default: 1 },
   xp: { type: Number, default: 0 },
+  favorites: { type: Object, default: {} }
 });
 
 const SALT_WORK_FACTOR = 10;
