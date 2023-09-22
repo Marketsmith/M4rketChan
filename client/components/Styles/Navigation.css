@@ -40,3 +40,12 @@ select {
 .action-buttons {
   display: flex;
 }
+
+.nav-login,
+.nav-sell,
+.user-level,
+.xp-level {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+}
