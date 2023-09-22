@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import Navigation from './navigation';
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Navigation from "./navigation";
+import HeartButton from "./heart";
 import useUserStore from '../zuStore';
 
 const Details = () => {
@@ -14,7 +14,7 @@ const Details = () => {
   const [getReviewAndBid, setgetReviewAndBid] = useState([]);
   const [getBidState, setGetBidState] = useState('');
   const [reviewsLoaded, setReviewsLoaded] = useState(false);
-
+  console.log('here is the username from details: ', zuUsername);
   useEffect(() => {
     let isMounted = true;
     fetch(`http://localhost:3000/getReviewAndBid/${details[0].name}`)
@@ -158,6 +158,7 @@ const Details = () => {
               </div>
             </form>
           </div>
+          <HeartButton user={zuUsername} />
         </div>
       </div>
     </>
