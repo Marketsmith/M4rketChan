@@ -10,10 +10,8 @@ const Navigation = () => {
   const [userExp, setUserExp] = useState(null);
   const { zuUsername } = useUserStore();
 
- 
-
   useEffect(() => {
-      fetch(`http://localhost:3000/getUserXP/${zuUsername}`)
+    fetch(`http://localhost:3000/getUserXP/${zuUsername}`)
       .then((res) => res.json())
       .then((data) => {
         setUserExp(data);
@@ -23,12 +21,10 @@ const Navigation = () => {
       });
   }, [zuUsername]);
 
-
   useEffect(() => {
     fetch(`http://localhost:3000/getUserLevel/${zuUsername}`)
       .then((res) => res.json())
       .then((data) => {
-
         setUserLevel(data);
       })
       .catch((error) => {
@@ -58,9 +54,16 @@ const Navigation = () => {
       </select>
 
       <div className='action-buttons'>
-        <Link to='/sellItem' className='nav-sell'>
-          Sell
-        </Link>
+        {zuUsername ? (
+          <Link to='/sellItem' className='nav-sell'>
+            Sell
+          </Link>
+        ) : (
+          <Link to='/login-page' className='nav-login'>
+            Sell
+          </Link>
+        )}
+
         {zuUsername ? (
           <span className='nav-username'> Welcome, {zuUsername}</span>
         ) : (
@@ -70,10 +73,14 @@ const Navigation = () => {
         )}
         {zuUsername ? (
           <span className='user-level'>{`Level:${userLevel}`} </span>
-        ) : <span className='user-level'>{`Level: 0`} </span>}
+        ) : (
+          <span className='user-level'>{`Level: 0`} </span>
+        )}
         {zuUsername ? (
           <span className='xp-level'>{`Exp:${userExp}`} </span>
-        ) : <span className='xp-level'>{`Exp: 0`} </span>}
+        ) : (
+          <span className='xp-level'>{`Exp: 0`} </span>
+        )}
       </div>
     </div>
   );

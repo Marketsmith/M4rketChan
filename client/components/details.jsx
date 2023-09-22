@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Navigation from "./navigation";
-import HeartButton from "./heart";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Navigation from './navigation';
+import HeartButton from './heart';
 import useUserStore from '../zuStore';
 
 const Details = () => {
@@ -107,7 +107,7 @@ const Details = () => {
 
       const data = await response.json();
       if (data.success) {
-        setGetBidState(bidState);
+        setGetBidState('Bidding has ended!');
         setBidState('');
         alert(data.message);
       } else {
