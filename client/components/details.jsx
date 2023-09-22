@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Navigation from "./navigation";
-import HeartButton from "./heart";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Navigation from './navigation';
+import HeartButton from './heart';
 import useUserStore from '../zuStore';
 
 const Details = () => {
   const details = useSelector((state) => state.user.details);
+  console.log('details: ', details);
   const [bidState, setBidState] = useState('');
   const [reviewState, setReviewState] = useState('');
   const { zuUsername } = useUserStore();
@@ -31,7 +32,8 @@ const Details = () => {
     };
   }, []);
 
-  function submitBid() {
+  function submitBid(e) {
+    e.preventDefault();
     fetch('http://localhost:3000/placeBid', {
       method: 'POST',
       body: JSON.stringify({
@@ -45,9 +47,12 @@ const Details = () => {
       .then((data) => data.json())
       .then((data) => {
         if (data.success) {
+          setGetBidState(bidState);
+          setBidState('');
           alert(data.message);
         } else {
           alert(data.message);
+          setBidState('');
         }
       })
       .catch((err) => {
@@ -91,13 +96,27 @@ const Details = () => {
   };
 
   const handleBuyButton = async () => {
-    const response = await fetch('http://localhost:3000/buyItem', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
+    try {
+      const response = await fetch('http://localhost:3000/buyItem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setGetBidState('Bidding has ended!');
+        setBidState('');
+        alert(data.message);
+      } else {
+        alert(data.message);
+        setBidState('');
+      }
+    } catch (err) {
+      console.error('Fetching bought items failed: ', err);
+    }
   };
 
   return (
@@ -117,7 +136,7 @@ const Details = () => {
                 <div>Price: {item.price} </div>
                 <button type='button' onClick={handleBuyButton}>
                   {' '}
-                  Buy it now.{' '}
+                  Buy Now!{' '}
                 </button>
               </div>
               <div>Current Bid : {getBidState}</div>

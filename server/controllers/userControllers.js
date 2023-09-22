@@ -110,10 +110,9 @@ userController.getUserLevel = async (req, res, next) => {
   const { username } = req.params;
 
   try {
-    const user = await User.find({username}, 'level');
+    const user = await User.find({ username }, 'level');
     res.locals.level = user[0].level;
-    return next()
-
+    return next();
   } catch (err) {
     return next({
       err,
@@ -127,10 +126,9 @@ userController.getUserXP = async (req, res, next) => {
   const { username } = req.params;
 
   try {
-    const user = await User.find({username}, 'xp');
+    const user = await User.find({ username }, 'xp');
     res.locals.xp = user[0].xp;
-    return next()
-
+    return next();
   } catch (err) {
     return next({
       err,
@@ -242,9 +240,12 @@ userController.buyItem = async (req, res, next) => {
         }
       );
     }
+    res.locals.success = true;
 
     return next();
   } catch (error) {
+    console.error('Error adding item:', error);
+    res.locals.success = false;
     return next({
       status: 400,
       log: 'buyItem did not work',
@@ -264,15 +265,14 @@ userController.checkLevel = async (req, res, next) => {
       res.success = false;
       return next();
     }
-  }
-  catch (error) {
+  } catch (error) {
     return next({
       status: 400,
       log: 'checkLevel did not work',
       message: 'checkLevel did not work',
     });
   }
-}
+};
 
 bidController.placeBid = async (req, res, next) => {
   const { amount, itemName } = req.body;
@@ -317,80 +317,76 @@ bidController.findBid = async (req, res, next) => {
   res.locals.data = {};
 
   try {
-    const foundBid = await Bid.findOne({ item: name })
+    const foundBid = await Bid.findOne({ item: name });
     res.locals.data.bid = foundBid.currentBid;
-    return next()
-  }
-  catch {
+    return next();
+  } catch {
     return next({
       status: 400,
       log: 'Failed during findBid',
-      message: 'Error during findBid middleware.'
+      message: 'Error during findBid middleware.',
     });
   }
   // return next();
-}
+};
 
 reviewController.findReview = async (req, res, next) => {
   const { name } = req.params;
 
   try {
-    const foundReview = await Review.findOne({ item: name })
+    const foundReview = await Review.findOne({ item: name });
     const reviewArray = [];
     foundReview.reviews.forEach((review) => {
       reviewArray.push(review);
-    })
+    });
     res.locals.data.review = reviewArray;
-    return next()
-  }
-  catch {
+    return next();
+  } catch {
     return next({
       status: 400,
       log: 'Failed during findReview',
-      message: 'Error during findReview middleware.'
+      message: 'Error during findReview middleware.',
     });
   }
-}
+};
 
 bidController.findBid = async (req, res, next) => {
   const { name } = req.params;
   res.locals.data = {};
 
   try {
-    const foundBid = await Bid.findOne({ item: name })
+    const foundBid = await Bid.findOne({ item: name });
     res.locals.data.bid = foundBid.currentBid;
-    return next()
-  }
-  catch {
+    return next();
+  } catch {
     return next({
       status: 400,
       log: 'Failed during findBid',
-      message: 'Error during findBid middleware.'
+      message: 'Error during findBid middleware.',
     });
   }
   // return next();
-}
+};
 
 reviewController.findReview = async (req, res, next) => {
   const { name } = req.params;
 
   try {
-    const foundReview = await Review.findOne({ item: name })
+    const foundReview = await Review.findOne({ item: name });
     const reviewArray = [];
     foundReview.reviews.forEach((review) => {
       reviewArray.push(review);
-    })
+    });
     res.locals.data.review = reviewArray;
-    return next()
-  }
-  catch {
+    return next();
+  } catch {
     return next({
       status: 400,
       log: 'Failed during findReview',
-      message: 'Error during findReview middleware.'
+      message: 'Error during findReview middleware.',
     });
   }
-}
+};
 
 reviewController.createReviewPage = async (req, res, next) => {
   const { name } = req.body;
@@ -411,14 +407,13 @@ reviewController.addReview = async (req, res, next) => {
   const { itemName, message } = req.body;
 
   try {
-    const item = await Review.findOne({ item: itemName })
+    const item = await Review.findOne({ item: itemName });
     console.log('here is the item', item);
     item.reviews.push(message);
     item.markModified('reviews', reviewController);
     await item.save();
     return next();
-  }
-  catch {
+  } catch {
     return next({
       status: 400,
       log: 'Failed during addReview',

@@ -52,19 +52,32 @@ app.post(
 
 app.get('/checkLevel/:user', userController.checkLevel, (req, res) => {
   if (res.success) {
-    return res.status(200).json({ success: true })
+    return res.status(200).json({ success: true });
   } else {
-    return res.status(400).json({ success: false })
+    return res.status(400).json({ success: false });
   }
-})
+});
 
-app.get('/getReviewAndBid/:name', bidController.findBid, reviewController.findReview, (req, res) => {
-  return res.status(200).json(res.locals.data)
-})
+app.get('/checkLevel/:user', userController.checkLevel, (req, res) => {
+  if (res.success) {
+    return res.status(200).json({ success: true });
+  } else {
+    return res.status(400).json({ success: false });
+  }
+});
+
+app.get(
+  '/getReviewAndBid/:name',
+  bidController.findBid,
+  reviewController.findReview,
+  (req, res) => {
+    return res.status(200).json(res.locals.data);
+  }
+);
 
 app.post('/addReview', reviewController.addReview, (req, res) => {
-  return res.status(200).json({ success: true, message: 'Added review!' })
-})
+  return res.status(200).json({ success: true, message: 'Added review!' });
+});
 
 app.post('/login', userController.login, (req, res) => {
   if (res.locals.success) return res.status(200).json(res.locals.success);
@@ -106,13 +119,12 @@ app.get('/getUsers', userController.getUsers, (req, res) => {
 });
 
 app.get('/getUserXP/:username', userController.getUserXP, (req, res) => {
-  return res.status(200).json(res.locals.xp)
+  return res.status(200).json(res.locals.xp);
 });
 
 app.get('/getUserLevel/:username', userController.getUserLevel, (req, res) => {
-  return res.status(200).json(res.locals.level)
+  return res.status(200).json(res.locals.level);
 });
-
 
 app.post('/placeBid', bidController.placeBid, (req, res) => {
   if (res.locals.success === true) {
@@ -125,7 +137,11 @@ app.post('/placeBid', bidController.placeBid, (req, res) => {
 });
 
 app.post('/buyItem', userController.buyItem, (req, res) => {
-  return res.status(200);
+  if (res.locals.success === true) {
+    return res.status(200).json({ success: true, message: 'Purchased Item!' });
+  } else {
+    return res.status(400).json({ success: false, message: 'Not enough of funds.' });
+  }
 });
 
 //route for fetch get request from searchbar to populate on buttonclick to fetch items with that specific city and item category (useEffect)
@@ -157,7 +173,6 @@ app.post('/upload', itemController.uploadImage, (req, res) => {
 app.get('*', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../public/index.html'));
 });
-
 
 // app.get("/listings", userController.getListings, (req, res) => {
 //   return res.status(200).json(res.locals.listings);

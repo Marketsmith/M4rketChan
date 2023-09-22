@@ -77,7 +77,7 @@ const SignupPage = () => {
   return (
     <div id='signup-page'>
       <div id='signup-container'>
-        <h1 id='welcome-banner'>Welcome to Panda Whale</h1>
+        <h1 id='welcome-banner'>Welcome to Marketsmith!</h1>
         <div id='submit-form'>
           <form id='signup-form' onSubmit={handleSubmit}>
             <div id='user-credentials-form'>

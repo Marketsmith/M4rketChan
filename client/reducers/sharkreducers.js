@@ -1,4 +1,4 @@
-import { DETAILS } from "../constants/actionTypes";
+import { DETAILS } from '../constants/actionTypes';
 
 const initialState = {
   details: [],
@@ -7,7 +7,7 @@ const initialState = {
 const sharkreducers = (state = initialState, action) => {
   switch (action.type) {
     case DETAILS: {
-      const { name, picture, description, city, price, date, currentBid} = action.payload;
+      const { name, picture, description, city, price, date, currentBid } = action.payload;
       const newItemDetails = {
         name,
         picture,
@@ -15,9 +15,9 @@ const sharkreducers = (state = initialState, action) => {
         city,
         price,
         date,
-        currentBid
+        currentBid,
       };
-      const updatedDetails = [...state.details, newItemDetails];
+      const updatedDetails = [newItemDetails];
 
       return {
         ...state,

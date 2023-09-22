@@ -51,7 +51,7 @@ const Login = () => {
     <div className='loginpage'>
       <div className='loginbox'>
         <div>
-          <h3 className='loginHeader'>Welcome to the Market</h3>
+          <h3 className='loginHeader'>Welcome to Marketsmith!</h3>
           <div id='errormsg'>{errorMessage}</div>
           <form onSubmit={handleSubmitLogin}>
             <input
