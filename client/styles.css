@@ -1,0 +1,59 @@
+.sellbody {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.picturesize {
+  width: 100%;
+  max-width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.detailsbox {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.reviewbox {
+  margin: 1rem 0;
+  width: 100%;
+}
+
+#buy-it-now {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+#review-comment {
+  margin: 10px;
+  font-style: italic;
+}
+
+.HeartButton {
+  float: right;
+}

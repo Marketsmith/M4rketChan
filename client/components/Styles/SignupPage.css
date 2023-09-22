@@ -1,0 +1,22 @@
+#signup-page {
+  background: linear-gradient(to bottom, rgb(255, 190, 116) 0%, rgb(254, 252, 234) 30%);
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#signup-form {
+  margin-top: 10px;
+}
+
+#submit-form,
+#submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

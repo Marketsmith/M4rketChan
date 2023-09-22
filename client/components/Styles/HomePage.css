@@ -1,0 +1,19 @@
+.homebuttons {
+  background-color: #24292e;
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.homebuttons:hover {
+  background-color: #3b4045;
+}
+
+.homebody {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
